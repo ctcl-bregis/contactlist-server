@@ -1,6 +1,5 @@
-col,tablewidth
-name,25
-irln,25
-loca,30
-tcrd,10
-tmod,10
+col,width
+name,20
+irln,20
+tcrd,20
+tmod,20

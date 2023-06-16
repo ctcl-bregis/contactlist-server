@@ -1,9 +1,7 @@
 # ContactList "African Forest Elephant"
-ContactList is a simple, configurable web application for managing comtact information. It is written in Python and makes use of the Django web framework.
+ContactList is a simple, configurable web application for managing comtact information. It is written in Python and makes use of the Django web framework. The project was inspired by the information management system that the character 'Dendy' uses in the cartoon series 'OK K.O. Let's Be Heroes'.
 
 The codename was chosen in relation to how elephants have a great memory and how elephants are used to symbolize memory; the act of remembering something. 
-
-The project was inspired by the information management system that the character Dendy from the cartoon series 'OK K.O. Let's Be Heroes' uses. 
 
 ## Requirements
 
@@ -17,3 +15,11 @@ As Django 4.2 is currently the only dependency in "requirements.txt", the minimu
 
 ### Software (client)
 Due to the lack of login system and user settings at the moment, support for cookies is not required. Also, JavaScript is not required to use the features of the web application. HTML5 support is recommended.
+
+## Setup
+*Section To-Do*
+
+## Configuration
+The configuration file in config/database/entry.csv defines the form fields and database models used by the application. The included file is rather basic but can be modified to add more fields.
+
+*Rest of Section To-Do*

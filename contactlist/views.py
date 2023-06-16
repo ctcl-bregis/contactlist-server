@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - June 13, 2023
+# Date: June 9, 2023 - June 16, 2023
 # Purpose: Main application views
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,7 +10,15 @@ from datetime import datetime
 import csv
 try:
     from .models import ContactItem
+except ModuleNotFoundError:
+    pass
+
+try:
     from .tableconfig import htmltable
+except ModuleNotFoundError:
+    pass
+
+try:
     from .fields import ContactForm
 except ModuleNotFoundError:
     pass
@@ -19,7 +27,6 @@ with open("config/database/entry.csv") as f:
     reader = list(csv.DictReader(f))
     
     headers = {i["col"]: i["name"] for i in reader}
-    
     
 @register.filter
 def get_item(dictionary, key):
@@ -44,8 +51,8 @@ def new(request):
                 setattr(newentry, k, v)
             
             dt = datetime.now()
-            setattr(newentry, "crd", dt)
-            setattr(newentry, "mod", dt)
+            setattr(newentry, "tcrd", dt)
+            setattr(newentry, "tmod", dt)
             
             newentry.save()
             
@@ -53,29 +60,39 @@ def new(request):
     else:
         form = ContactForm
     
-    return render(request, "new.html", {"form": form})
+    return render(request, "new.html", {"title": "ContactList - New", "form": form})
 
-def item(request, inid):
-    action = request.GET.get("action", "")
+def view(request, inid):
+    template = loader.get_template("view.html")
+    dbitem = ContactItem.objects.get(pk=inid)
+    data = dbitem.todict()
+    # Remove database ID
+    data.pop("inid")
     
-    if action == "edit":
-        return HttpResponse("Not implemented")
-    elif action == "delete" or action == "del":
-        # TODO: Add confirmation for deleting an item
-        dbitem = ContactItem.objects.get(inid=inid)
-        dbitem.delete()
-        
-        return HttpResponseRedirect("/")
-    # If an invalid "action" is specified or there is no parameter, just default to "view"
+    context = {"title": "ContactList - View", "data": data, "headers": headers}
+    return HttpResponse(template.render(context, request))
+
+def edit(request, inid):
+    if request.method == "POST":
+        data = ContactItem.objects.get(pk=inid)
+        form = ContactForm(request.POST, instance=data)
+        if form.is_valid():
+            form.save()
+            
+            data = ContactItem.objects.get(pk=inid)
+            data.tmod = datetime.now()
+            data.save()
+            
+            return HttpResponseRedirect("/")
     else:
-        template = loader.get_template("view.html")
-        dbitem = ContactItem.objects.get(pk=inid)
-        data = dbitem.todict()
-        # Remove database ID
-        data.pop("inid")
-        
-        context = {"data": data, "headers": headers}
-        return HttpResponse(template.render(context, request))
-    
+        data = ContactItem.objects.get(pk=inid)
+        form = ContactForm(initial = data.todict())
+                
+        return render(request, "edit.html", {"title": "ContactList - Edit", "form": form, "inid": inid})
 
+def delete(request, inid):
+    # TODO: Add confirmation for deleting an item
+    dbitem = ContactItem.objects.get(inid=inid)
+    dbitem.delete()
     
+    return HttpResponseRedirect("/")

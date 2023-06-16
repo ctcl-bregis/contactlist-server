@@ -4,7 +4,7 @@ body {
     color: #FFFFFF;
 }
 
-p a {
+a {
     color: #FFFFFF;
 }
 
@@ -28,15 +28,20 @@ h1, h2, h3, h4, h5, p, p a {
     background-color: #222222;
 }
 
-table.view {
+table.view, table.form {
     border-spacing: 0pt;
 }
 
-table.view td {
+table.view td, table.form td, table.view th, table.form th {
     border: 0;
     border-style: solid;
     margin: 0pt;
     padding: 2pt;
+}
+
+table th {
+    border-right: 1pt solid #FFFFFF;
+    border-bottom: 1pt solid #FFFFFF;
 }
 
 table {
@@ -44,7 +49,10 @@ table {
 }
 
 table td {
-    border: 1pt;
+    border-right: 1pt;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 1pt;
     border-color: #FFFFFF;
     border-style: solid;
     margin: 0pt;

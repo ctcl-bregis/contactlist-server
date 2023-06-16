@@ -161,3 +161,6 @@ cython_debug/
 
 # Do not upload any database files to the repo
 *.sqlite3
+
+# Django DB migration data
+contactlist/migrations/

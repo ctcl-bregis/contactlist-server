@@ -2,18 +2,20 @@
         <div class="btn-group-rlmenu">
             <a href="/new/"><button>Add Contact</button></a>
         </div>
-        <table>
-            <tr>{% for i in headernames %}
-                <th>{{ i }}</th>{% endfor %}
-                <th> </th>
-                <th> </th>
-                <th> </th>
-                </tr>
+        <table width="%100">
+            <tr>{% for header in headernames %}
+                <th style="width: {{ header.width }}%;">{{ header.name }}</th>{% endfor %}
+                <th style="width: 5%;"></th>
+                <th style="width: 5%;"></th>
+                <th style="width: 5%;"></th>
+                <th style="width: 5%;"></th>
+            </tr>
             {% for r in data %}<tr>{% for h in headers %}
                 <td>{{ r|get_item:h }}</td>{% endfor %}
-                <td><a href="/item/{{ r.inid }}">View</a></td>
-                <td><a href="/item/{{ r.inid }}?action=edit">Edit</a></td>
-                <td><a href="/item/{{ r.inid }}?action=del">Delete</a></td>
+                <td><a href="/view/{{ r.inid }}">View</a></td>
+                <td><a href="/edit/{{ r.inid }}">Edit</a></td>
+                <td><a href="/delete/{{ r.inid }}">Delete</a></td>
+                <td><a href="#"></a></td>
             </tr>{% endfor %}
         </table>
 {% include "footer.html" %}
