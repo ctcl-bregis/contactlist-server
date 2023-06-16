@@ -1,0 +1,13 @@
+#!/bin/bash
+find . -name "__pycache__" -exec rm -r "{}" \;
+
+if [[ $* == *--build* ]]
+then
+    rm contactlist/models.py
+    rm contactlist/choices.py
+    python3 -B manage.py genmodels
+    python3 -B manage.py makemigrations
+    python3 -B manage.py migrate
+fi
+
+python3 -B manage.py runserver
