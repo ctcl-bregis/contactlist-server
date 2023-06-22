@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: May 4, 2023 (Reused from CAMS) - June 21, 2023
+# Date: May 4, 2023 (Reused from CAMS) - June 22, 2023
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 
 from datetime import datetime, timezone
@@ -81,10 +81,10 @@ def navbar(active = "", cfgpath = "config/navbar.json"):
 # Return theme data
 def theme(tname):
     try:
-        tdata = themes[tname]
-        return tdata
+        return themes[tname]
     except KeyError:
         print(f"lib.py WARNING: Theme \"{tname}\" not found, using default")
+        return themes["default"] 
         
 def getconfig(part):
     try:
