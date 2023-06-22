@@ -1,4 +1,4 @@
-## 0.2.0 - June 20, 2023 - "Don't let it overcharge!"
+## 0.2.0 - June 22, 2023 - "Don't let it overcharge!"
 
 Changes:
 
