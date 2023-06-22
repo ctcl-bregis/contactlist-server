@@ -164,3 +164,8 @@ cython_debug/
 
 # Django DB migration data
 contactlist/migrations/
+contactlist/choices.py
+contactlist/fields.py
+contactlist/models.py
+
+

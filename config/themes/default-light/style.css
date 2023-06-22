@@ -1,0 +1,127 @@
+body {
+    background-color: #FFFFFF;
+    font-family: arial;
+    color: #000000;
+}
+
+a {
+    color: #000000;
+}
+
+h1, h2, h3, h4, h5, p, p a {
+    padding: 4pt;
+    margin: 2pt;
+}
+
+.docs_browse table {
+    color: #000000;
+    padding: 4pt;
+    margin: 0;
+}
+
+.docs_browse_link a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.docs_browse_link:hover {
+    background-color: #DDDDDD;
+}
+
+table.view, table.form {
+    border-spacing: 0pt;
+}
+
+table.view td, table.form td, table.view th, table.form th {
+    border: 0;
+    border-style: solid;
+    margin: 0pt;
+    padding: 2pt;
+}
+
+table th {
+    border-right: 1pt solid #000000;
+    border-bottom: 1pt solid #000000;
+}
+
+table {
+    border-spacing: 0pt;
+}
+
+table td {
+    border-right: 1pt;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 1pt;
+    border-color: #000000;
+    border-style: solid;
+    margin: 0pt;
+    padding: 2pt;
+}
+
+.navbar ul {
+    background-color: #000000;
+}
+
+.navbar li a, .dropbtn {
+    color: #FFFFFF;
+}
+
+.navbar li a:hover, .dropdown:hover .dropbtn {
+    background-color: #222222;
+}
+
+.dropdown-content {
+    background-color: #FFFFFF;
+}
+
+.dropdown-content a:hover {
+    background-color: #222222;
+}
+
+.btn-group-rlmenu {
+    display: flex;
+}
+
+.btn-group-rlmenu button {
+    background-color: #000000;
+    border: 0.5pt solid #FFFFFF;
+    margin: 4pt;
+    color: #FFFFFF;
+    padding: 10px 24px;
+    cursor: pointer;
+}
+
+.btn-group-rlmenu a {
+    text-decoration: none;
+}
+
+.actbutton {
+    margin: 0pt;
+    padding: 0pt;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.actbutton a button {
+    border: 0;
+    background-color: #FFFFFF;
+    color: #000000;
+    width: 100%;
+    cursor: pointer;
+}
+
+.form td {
+    border: 0;
+}
+
+input[type="submit"] {
+    background-color: #000000;
+    border: 0.5pt solid #FFFFFF;
+    margin: 4pt;
+    color: #FFFFFF;
+    padding: 10px 24px;
+    cursor: pointer;
+    display: block;
+    width: 98.5%;
+}

@@ -6,7 +6,6 @@ then
     rm contactlist/models.py 2> /dev/null
     rm contactlist/fields.py 2> /dev/null
     rm contactlist/choices.py 2> /dev/null
-    rm contactlist/tableconfig.py 2> /dev/null
     python3 -B manage.py genmodels
     python3 -B manage.py makemigrations
     python3 -B manage.py migrate

@@ -3,8 +3,22 @@
     <head>
         <title>{{ title }}</title>
         <style>
-{% include "base.css" %}
-{% include "dark_flat.css" %}
+{{ styling|safe }}
         </style>
     </head>
     <body>
+        <div class="navbar">
+            <ul>{% for item in navbar.content %}
+                {% if item.type == "dropdown" %}
+                <li class="dropdown" style="float: {{ item.float }}">
+                    <a href="javascript:void(0)" class="dropbtn">{{ item.text }}</a>
+                    <div class="dropdown-content">{% for option in item.options %}
+                        <a href="{{ option.link }}">{{ option.text. }}</a>
+                    {% endfor %}</div>
+                </li>
+                {% elif item.type == "link" %}
+                <li style="float: {{ item.float }}"><a href={{ item.link }}>{{ item.text }}</a></li>
+                {% elif item.type == "logo" %}
+                <li style="float: {{ item.float }}"><img src={{ theme.logo }} width="48" height="48"></li>
+        {% endif %}{% endfor %}</ul>
+        </div>

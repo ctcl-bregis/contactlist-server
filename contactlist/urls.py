@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - June 16, 2023
+# Date: June 9, 2023 - June 21, 2023
 # Purpose: Main application URLs
 
 from django.urls import path
@@ -10,5 +10,6 @@ urlpatterns = [
     path("new/", views.new),
     path("view/<str:inid>/", views.view),
     path("edit/<str:inid>/", views.edit),
-    path("delete/<str:inid>/", views.delete)
+    path("delete/<str:inid>/", views.delete),
+    path("settings/", views.settings)
 ]

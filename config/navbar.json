@@ -1,41 +1,28 @@
 {
     "content": [
         {
-            "name": "logo",
+            "name": "main",
             "onlyloggedin": "False",
-            "text": "",
+            "text": "Main",
             "link": "/",
             "float": "left",
-            "type": "logo"
-        },
-        {
-            "name": "login",
-            "onlyloggedin": "False",
-            "text": "Profile",
-            "link": "/user",
-            "float": "right",
             "type": "link"
         },
         {
-            "name": "docs",
+            "name": "new",
             "onlyloggedin": "False",
-            "text": "Docs",
-            "link": "/docs",
-            "float": "right",
+            "text": "Add Contact",
+            "link": "/new/",
+            "float": "left",
             "type": "link"
         },
         {
-            "name": "search",
-            "onlyloggedin": "True",
-            "text": "Search",
-            "link": "/search",
+            "name": "settings",
+            "onlyloggedin": "False",
+            "text": "Settings",
+            "link": "/settings/",
             "float": "right",
-            "type": "dropdown",
-            "options": [
-                {"text": "Items", "link": "/search/items"},
-                {"text": "Sources", "link": "/search/sources"},
-                {"text": "Quotes", "link": "/search/quotes"}
-            ]
+            "type": "link"
         }
     ]
 }

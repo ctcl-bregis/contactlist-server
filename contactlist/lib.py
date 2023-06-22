@@ -1,11 +1,15 @@
 # ContactList - CTCL 2023
-# Date: May 4, 2023 (Reused from CAMS) - June 13, 2023
+# Date: May 4, 2023 (Reused from CAMS) - June 21, 2023
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 
 from datetime import datetime, timezone
 import json, base64
 from os import listdir
 from os.path import isdir, join, exists
+
+# Load the config on startup instead of every time a function needs it
+with open("config/config.json") as f:
+    jsondata = json.loads(f.read())
 
 themes = {}
 
@@ -17,25 +21,44 @@ for i in themedir:
             jdata = dict(json.load(f))
         
         temppath = jdata["theme"]["css"]
-        with open(f"config/themes/{i}/{temppath}") as f:
-            tdata["themecss"] = f.read()
+        if temppath != "":
+            try:
+                with open(f"config/common/base.css") as f:
+                    tdata["styling"] = f.read()
+            except FileNotFoundError:
+                print(f"lib.py WARNING: config/common/base.css does not exist")
+                
+            try:
+                with open(f"config/themes/{i}/{temppath}") as f:
+                    tdata["styling"] += f.read()
+            except FileNotFoundError:
+                print(f"lib.py WARNING: config/themes/{i}/{temppath} does not exist")
+        else:
+            print(f"lib.py WARNING: Styling path is blank in theme \"{i}\", ignoring")
+            tdata["themecss"] = ""
         
         temppath = jdata["theme"]["logo"]
-        with open(f"config/themes/{i}/{temppath}") as f:
-            tdata["logo"] = "data:image/svg+xml;base64," + base64.b64encode(f.read().encode("utf-8")).decode("utf-8")
-            
+        if temppath != "":
+            try:
+                with open(f"config/themes/{i}/{temppath}") as f:
+                    tdata["logo"] = "data:image/svg+xml;base64," + base64.b64encode(f.read().encode("utf-8")).decode("utf-8")
+            except FileNotFoundError:
+                print(f"lib.py WARNING: config/themes/{i}/{temppath} does not exist")
+        else:
+            print(f"lib.py WARNING: Logo path is blank in theme \"{i}\", ignoring")
+            tdata["logo"] = ""
+        
         themes[i] = tdata
     except FileNotFoundError:
-        print(f"WARNING: Theme {i} does not have a index.json, it would not be available")
+        print(f"lib.py WARNING: Theme \"{i}\" does not have a index.json, it would not be available")
         pass
 
-
 # Timestamp to formatted date
-def ts2fmt(ts):
+def dt2fmt(dt):
     # TODO: have strfstr read from a config file
-    strfstr = "%H:%M, %b %m, %Y %Z"
+    strfstr = "%b %m, %Y, %H:%M %Z"
 
-    return datetime.fromtimestamp(ts, tz=timezone.utc).strftime(strfstr)
+    return dt.strftime(strfstr)
 
 # "Human size" data size formatting
 def hsize(fsize):
@@ -49,17 +72,23 @@ def hsize(fsize):
     return f"{num:.1f}Yi{suffix}"
    
 # Active page, cfgpath has a default value that can be overridden
-def navbar(active, cfgpath="config/navbar.json"):
+def navbar(active = "", cfgpath = "config/navbar.json"):
     with open(cfgpath) as f:
         jdata = dict(json.load(f))
         
     return jdata
 
+# Return theme data
 def theme(tname):
     try:
         tdata = themes[tname]
         return tdata
     except KeyError:
-        print(f"WARNING: Theme \"{tname}\" not found, using default")
+        print(f"lib.py WARNING: Theme \"{tname}\" not found, using default")
         
-    
+def getconfig(part):
+    try:
+        return jsondata["config"][part]
+    except KeyError:
+        print(f"lib.py WARNING: Key \"{part}\" does not exist in config/config.json")
+        return None

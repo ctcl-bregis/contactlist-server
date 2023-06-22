@@ -1,21 +1,16 @@
 {% include "header.html" %}
-        <div class="btn-group-rlmenu">
-            <a href="/new/"><button>Add Contact</button></a>
-        </div>
         <table width="%100">
-            <tr>{% for header in headernames %}
-                <th style="width: {{ header.width }}%;">{{ header.name }}</th>{% endfor %}
-                <th style="width: 5%;"></th>
-                <th style="width: 5%;"></th>
-                <th style="width: 5%;"></th>
-                <th style="width: 5%;"></th>
+            <tr>{% for header in headers %}
+                <th style="width: {{ header.width }}%;">{{ header.title }}</th>{% endfor %}
             </tr>
             {% for r in data %}<tr>{% for h in headers %}
-                <td>{{ r|get_item:h }}</td>{% endfor %}
-                <td><a href="/view/{{ r.inid }}">View</a></td>
-                <td><a href="/edit/{{ r.inid }}">Edit</a></td>
-                <td><a href="/delete/{{ r.inid }}">Delete</a></td>
-                <td><a href="#"></a></td>
+                {% if h.col != "" %}
+                <td>{{ r|get_item:h.col }}</td>
+                {% elif h.button != "" %}
+                <td class="actbutton"><a href="{{ h.button }}/{{ r.inid }}/"><button>{{ h.button }}</button></a></td>
+                {% else %}
+                <td></td>
+                {% endif %}{% endfor %}
             </tr>{% endfor %}
         </table>
 {% include "footer.html" %}

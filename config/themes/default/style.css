@@ -4,7 +4,7 @@ body {
     color: #FFFFFF;
 }
 
-p a {
+a {
     color: #FFFFFF;
 }
 
@@ -28,13 +28,33 @@ h1, h2, h3, h4, h5, p, p a {
     background-color: #222222;
 }
 
-td {
-    border-top: 1pt;
-    border-top-color: #FFFFFF;
-    border-top-style: solid;
+table.view, table.form {
+    border-spacing: 0pt;
 }
 
-td p {
+table.view td, table.form td, table.view th, table.form th {
+    border: 0;
+    border-style: solid;
+    margin: 0pt;
+    padding: 2pt;
+}
+
+table th {
+    border-right: 1pt solid #FFFFFF;
+    border-bottom: 1pt solid #FFFFFF;
+}
+
+table {
+    border-spacing: 0pt;
+}
+
+table td {
+    border-right: 1pt;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 1pt;
+    border-color: #FFFFFF;
+    border-style: solid;
     margin: 0pt;
     padding: 2pt;
 }
@@ -57,4 +77,51 @@ td p {
 
 .dropdown-content a:hover {
     background-color: #DDDDDD;
+}
+
+.btn-group-rlmenu {
+    display: flex;
+}
+
+.btn-group-rlmenu button {
+    background-color: #FFFFFF;
+    border: 0.5pt solid #000000;
+    margin: 4pt;
+    color: #000000;
+    padding: 10px 24px;
+    cursor: pointer;
+}
+
+.btn-group-rlmenu a {
+    text-decoration: none;
+}
+
+.actbutton {
+    margin: 0pt;
+    padding: 0pt;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.actbutton a button {
+    border: 0;
+    background-color: #FFFFFF;
+    color: #000000;
+    width: 100%;
+    cursor: pointer;
+}
+
+.form td {
+    border: 0;
+}
+
+input[type="submit"] {
+    background-color: #FFFFFF;
+    border: 0.5pt solid #000000;
+    margin: 4pt;
+    color: #000000;
+    padding: 10px 24px;
+    cursor: pointer;
+    display: block;
+    width: 98.5%;
 }
