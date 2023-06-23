@@ -1,3 +1,14 @@
+## 0.3.0 - June 23, 2023 - Font Awesome update
+
+Added:
+
+- Added fontawesomefree as a pip requirement
+- Font Awesome icons can now be used for button icons
+
+Fixes:
+
+- Fixed OSError Input/Output Error being raised from trying to call print() when the server is running headless
+
 ## 0.2.1 - June 22, 2023 - Theme switcher fix
 
 Fixes:

@@ -191,14 +191,14 @@
         "tmod": "Modified"
     },
     "htmltable": [
-        {"col": "name", "width": "20", "button": ""},
-        {"col": "irln", "width": "20", "button": ""},
-        {"col": "tmod", "width": "20", "button": ""},
-        {"col": "tcrd", "width": "20", "button": ""},
-        {"col": "", "width": "5", "button": "view"},
-        {"col": "", "width": "5", "button": "edit"},
-        {"col": "", "width": "5", "button": "delete"},
-        {"col": "", "width": "5", "button": ""}
+        {"type": "info", "col": "name", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "info", "col": "irln", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "info", "col": "tmod", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "info", "col": "tcrd", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "button", "col": "", "width": "5", "link": "view", "icon": "fa-solid fa-bars", "text": "View"},
+        {"type": "button", "col": "", "width": "5", "link": "edit", "icon": "fa-solid fa-pen-to-square", "text": "Edit"},
+        {"type": "button", "col": "", "width": "5", "link": "delete", "icon": "fa-solid fa-xmark", "text": "Delete"},
+        {"type": "button", "col": "", "width": "5", "link": "", "icon": "", "text": ""}
     ],
     "dropdown": {
         "socials": [

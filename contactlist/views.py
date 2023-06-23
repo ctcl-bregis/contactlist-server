@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - June 22, 2023
+# Date: June 9, 2023 - June 23, 2023
 # Purpose: Main application views
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -9,6 +9,7 @@ from django.template.defaulttags import register
 from datetime import datetime
 from . import lib
 from . import __version__
+from .lib import printe
 import csv
 
 try:
@@ -32,13 +33,12 @@ def index(request):
     # htmltable in the config should not contain titles, so add them from headers
     columns = []
     for i in lib.getconfig("htmltable"):
-        if i["col"] != "":
+        if i["type"] == "info":
             i["title"] = headers[i["col"]]
-        else:
+        elif i["type"] == "button":
             i["title"] = ""
             
         columns.append(i)
-            
     
     allitems = [i.todict() for i in ContactItem.objects.all()]
     
