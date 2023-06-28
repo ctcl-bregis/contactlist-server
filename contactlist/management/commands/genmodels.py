@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - June 27, 2023
+# Date: June 9, 2023 - June 28, 2023
 # Purpose: Management command for generating database models, form data and other files
 
 # Valid data types

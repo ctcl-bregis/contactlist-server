@@ -2,7 +2,6 @@
     "table": [
     {
         "col": "name",
-        "name": "Name",
         "datatype": "string",
         "min": "",
         "max": "128",
@@ -11,7 +10,14 @@
     },
     {
         "col": "irln",
-        "name": "Full Real Name",
+        "datatype": "string",
+        "min": "",
+        "max": "128",
+        "step": "",
+        "ddfile": ""
+    },
+    {
+        "col": "nick",
         "datatype": "string",
         "min": "",
         "max": "128",
@@ -20,7 +26,6 @@
     },
     {
         "col": "loca",
-        "name": "Location",
         "datatype": "text",
         "min": "",
         "max": "1024",
@@ -29,7 +34,6 @@
     },
     {
         "col": "dtmt",
-        "name": "Date Met",
         "datatype": "string",
         "min": "",
         "max": "64",
@@ -37,8 +41,23 @@
         "ddfile": ""
     },
     {
+        "col": "mtth",
+        "datatype": "string",
+        "min": "",
+        "max": "64",
+        "step": "",
+        "ddfile": ""
+    },
+    {
+        "col": "seen",
+        "datatype": "string",
+        "min": "",
+        "max": "32",
+        "step": "",
+        "ddfile": ""
+    },
+    {
         "col": "appe",
-        "name": "Appearance",
         "datatype": "text",
         "min": "",
         "max": "1024",
@@ -47,7 +66,6 @@
     },
     {
         "col": "smp1",
-        "name": "Social Platform 1",
         "datatype": "select",
         "min": "",
         "max": "",
@@ -56,7 +74,6 @@
     },
     {
         "col": "smu1",
-        "name": "Social Username 1",
         "datatype": "string",
         "min": "",
         "max": "64",
@@ -65,7 +82,6 @@
     },
     {
         "col": "smp2",
-        "name": "Social Platform 2",
         "datatype": "select",
         "min": "",
         "max": "",
@@ -74,7 +90,6 @@
     },
     {
         "col": "smu2",
-        "name": "Social Username 2",
         "datatype": "string",
         "min": "",
         "max": "64",
@@ -83,7 +98,6 @@
     },
     {
         "col": "smp3",
-        "name": "Social Platform 3",
         "datatype": "select",
         "min": "",
         "max": "",
@@ -92,7 +106,6 @@
     },
     {
         "col": "smu3",
-        "name": "Social Username 3",
         "datatype": "string",
         "min": "",
         "max": "64",
@@ -101,7 +114,6 @@
     },
     {
         "col": "smp4",
-        "name": "Social Platform 4",
         "datatype": "select",
         "min": "",
         "max": "",
@@ -110,7 +122,6 @@
     },
     {
         "col": "smu4",
-        "name": "Social Username 4",
         "datatype": "string",
         "min": "",
         "max": "64",
@@ -119,7 +130,6 @@
     },
     {
         "col": "smp5",
-        "name": "Social Platform 5",
         "datatype": "select",
         "min": "",
         "max": "",
@@ -151,6 +161,38 @@
         "ddfile": ""
     },
     {
+        "col": "ema1",
+        "datatype": "string",
+        "min": "",
+        "max": "64",
+        "step": "",
+        "ddfile": ""
+    },
+    {
+        "col": "ema2",
+        "datatype": "string",
+        "min": "",
+        "max": "64",
+        "step": "",
+        "ddfile": ""
+    },
+    {
+        "col": "ema3",
+        "datatype": "string",
+        "min": "",
+        "max": "64",
+        "step": "",
+        "ddfile": ""
+    },
+    {
+        "col": "ema4",
+        "datatype": "string",
+        "min": "",
+        "max": "64",
+        "step": "",
+        "ddfile": ""
+    },
+    {
         "col": "nphn",
         "datatype": "string",
         "min": "",
@@ -159,10 +201,18 @@
         "ddfile": ""
     },
     {
+        "col": "empl",
+        "datatype": "text",
+        "min": "",
+        "max": "1024",
+        "step": "",
+        "ddfile": ""
+    },
+    {
         "col": "note",
         "datatype": "text",
         "min": "",
-        "max": "2000",
+        "max": "2048",
         "step": "",
         "ddfile": ""
     }
@@ -170,8 +220,11 @@
     "headers": {
         "name": "Name",
         "irln": "Full Real Name",
+        "nick": "Nicknames",
         "loca": "Location",
         "dtmt": "Date Met",
+        "mtth": "Met Through",
+        "seen": "Seen in real life?",
         "appe": "Appearance",
         "smp1": "Social Media Platform 1",
         "smu1": "Social Media Username 1",
@@ -185,7 +238,12 @@
         "smu5": "Social Media Username 5",
         "smp6": "Social Media Platform 6",
         "smu6": "Social Media Username 6",
+        "ema1": "Email 1",
+        "ema2": "Email 2",
+        "ema3": "Email 3",
+        "ema4": "Email 4",
         "nphn": "Phone Number",
+        "empl": "Employment Information",
         "note": "Notes",
         "tcrd": "Created",
         "tmod": "Modified"
@@ -204,11 +262,17 @@
         "socials": [
         ["disc", "Discord"],
         ["ebay", "eBay"],
+        ["epic", "Epic Games"],
         ["face", "Facebook"],
+        ["gith", "GitHub"],
+        ["link", "LinkedIn"],
+        ["payp", "PayPal"],
         ["inst", "Instagram"],
+        ["redd", "Reddit"],
         ["snap", "Snapchat"],
         ["stea", "Steam"],
-        ["webs", "Website"]
+        ["twit", "Twitter"],
+        ["webs", "Personal Website"]
         ]
     },
     "misc": {

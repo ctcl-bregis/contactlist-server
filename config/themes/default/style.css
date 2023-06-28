@@ -32,31 +32,15 @@ table.view, table.form {
     border-spacing: 0pt;
 }
 
-table.view td, table.form td, table.view th, table.form th {
+table.form td, table.form th {
     border: 0;
     border-style: solid;
     margin: 0pt;
     padding: 2pt;
 }
 
-table th {
-    border-right: 1pt solid #FFFFFF;
-    border-bottom: 1pt solid #FFFFFF;
-}
-
 table {
     border-spacing: 0pt;
-}
-
-table td {
-    border-right: 1pt;
-    border-left: 0;
-    border-top: 0;
-    border-bottom: 1pt;
-    border-color: #FFFFFF;
-    border-style: solid;
-    margin: 0pt;
-    padding: 2pt;
 }
 
 .navbar ul {
@@ -94,14 +78,13 @@ table td {
 .actbutton {
     margin: 0pt;
     padding: 0pt;
-    background-color: #FFFFFF;
     cursor: pointer;
 }
 
 .actbutton a button {
     border: 0;
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #000000;
+    color: #FFFFFF;
     width: 100%;
     cursor: pointer;
 }

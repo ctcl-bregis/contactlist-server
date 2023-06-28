@@ -59,14 +59,14 @@ for i in themedir:
         temppath = jdata["theme"]["tstheme"]
         if temppath != "":
             # TODO: Detect if the theme file exists
-            if temppath["file"].startswith("static/"):
+            if temppath["file"].startswith("/static/"):
                 tdata["tstheme"] = temppath
             else:
-                printe(f"lib.py WARNING: tablsorter theme path is invalid: \"{temppath['file']}\". Defaulting to static/tablesorter/css/theme.default.min.css")
-                tdata["tstheme"] = {"file": "static/tablesorter/css/theme.default.min.css", "name": "default"}
+                printe(f"lib.py WARNING: tablsorter theme path is invalid: \"{temppath['file']}\". Defaulting to /static/tablesorter/css/theme.default.min.css")
+                tdata["tstheme"] = {"file": "/static/tablesorter/css/theme.default.min.css", "name": "default"}
         else:
             printe(f"lib.py WARNING: tablsorter theme is blank. Defaulting to static/tablesorter/css/theme.default.min.css")
-            tdata["tstheme"] = {"file": "static/tablesorter/css/theme.default.min.css", "name": "default"}
+            tdata["tstheme"] = {"file": "/static/tablesorter/css/theme.default.min.css", "name": "default"}
         
         themes[i] = tdata
     except FileNotFoundError:

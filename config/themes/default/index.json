@@ -3,5 +3,5 @@
     "int_name": "default",
     "css": "style.css",
     "logo": "",
-    "tstheme": {"file": "static/tablesorter/css/theme.dark.min.css", "name": "dark"}
+    "tstheme": {"file": "/static/tablesorter/css/theme.dark.min.css", "name": "dark"}
 }}

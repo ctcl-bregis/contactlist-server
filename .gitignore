@@ -163,7 +163,7 @@ cython_debug/
 *.sqlite3
 
 # Django DB migration data
-contactlist/migrations/
+contactlist/migrations/0*.py
 
 # Automatically generated files
 contactlist/choices.py

@@ -1,3 +1,14 @@
+## 0.4.1 - June 28, 2023 - More Data?
+
+Additions:
+- More table fields in config.json
+- More social platforms added to the dropdown
+
+Fixes:
+- Removed unused "name" fields from table configuration in config.json
+- Fixed paths for tablesorter static files
+- CSS fixes
+
 ## 0.4.0 - June 28, 2023 - Sorting Update
 
 Added: 

@@ -3,5 +3,5 @@
     "int_name": "default-light",
     "css": "style.css",
     "logo": "",
-    "tstheme": {"file": "static/tablesorter/css/theme.default.min.css", "name": "default"}
+    "tstheme": {"file": "/static/tablesorter/css/theme.default.min.css", "name": "default"}
 }}

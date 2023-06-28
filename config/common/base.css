@@ -82,7 +82,9 @@ input[type="submit"] {
     width: 100%;
     cursor: pointer;
     display: block;
-    margin: 2pt;
+    margin-top: 4pt;
 }
 
-input{box-sizing:border-box} 
+input {
+    box-sizing: border-box;
+} 
