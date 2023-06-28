@@ -166,8 +166,8 @@ cython_debug/
 contactlist/migrations/0*.py
 
 # Automatically generated files
-contactlist/choices.py
-contactlist/fields.py
-contactlist/models.py
+choices.py
+fields.py
+models.py
 
 

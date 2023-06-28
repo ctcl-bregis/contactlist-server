@@ -16,6 +16,8 @@ class ContactItem(models.Model):
     name = models.CharField(blank = True, max_length = 128)
     irln = models.CharField(blank = True, max_length = 128)
     nick = models.CharField(blank = True, max_length = 128)
+    prns = models.CharField(blank = True, max_length = 32)
+    birt = models.CharField(blank = True, max_length = 32)
     loca = models.TextField(blank = True, null = True)
     dtmt = models.CharField(blank = True, max_length = 64)
     mtth = models.CharField(blank = True, max_length = 64)
@@ -46,10 +48,10 @@ class ContactItem(models.Model):
         verbose_name_plural = "Contact Entries"
 
     def todict(self):
-        return {"inid": self.inid, "name": self.name, "irln": self.irln, "nick": self.nick, "loca": self.loca, "dtmt": self.dtmt, "mtth": self.mtth, "seen": self.seen, "appe": self.appe, "smp1": self.smp1, "smu1": self.smu1, "smp2": self.smp2, "smu2": self.smu2, "smp3": self.smp3, "smu3": self.smu3, "smp4": self.smp4, "smu4": self.smu4, "smp5": self.smp5, "smu5": self.smu5, "smp6": self.smp6, "smu6": self.smu6, "ema1": self.ema1, "ema2": self.ema2, "ema3": self.ema3, "ema4": self.ema4, "nphn": self.nphn, "empl": self.empl, "note": self.note, "tcrd": self.tcrd, "tmod": self.tmod, }
+        return {"inid": self.inid, "name": self.name, "irln": self.irln, "nick": self.nick, "prns": self.prns, "birt": self.birt, "loca": self.loca, "dtmt": self.dtmt, "mtth": self.mtth, "seen": self.seen, "appe": self.appe, "smp1": self.smp1, "smu1": self.smu1, "smp2": self.smp2, "smu2": self.smu2, "smp3": self.smp3, "smu3": self.smu3, "smp4": self.smp4, "smu4": self.smu4, "smp5": self.smp5, "smu5": self.smu5, "smp6": self.smp6, "smu6": self.smu6, "ema1": self.ema1, "ema2": self.ema2, "ema3": self.ema3, "ema4": self.ema4, "nphn": self.nphn, "empl": self.empl, "note": self.note, "tcrd": self.tcrd, "tmod": self.tmod, }
         
     def fieldnames():
-        return ['inid', 'name', 'irln', 'nick', 'loca', 'dtmt', 'mtth', 'seen', 'appe', 'smp1', 'smu1', 'smp2', 'smu2', 'smp3', 'smu3', 'smp4', 'smu4', 'smp5', 'smu5', 'smp6', 'smu6', 'ema1', 'ema2', 'ema3', 'ema4', 'nphn', 'empl', 'note', 'tcrd', 'tmod']
+        return ['inid', 'name', 'irln', 'nick', 'prns', 'birt', 'loca', 'dtmt', 'mtth', 'seen', 'appe', 'smp1', 'smu1', 'smp2', 'smu2', 'smp3', 'smu3', 'smp4', 'smu4', 'smp5', 'smu5', 'smp6', 'smu6', 'ema1', 'ema2', 'ema3', 'ema4', 'nphn', 'empl', 'note', 'tcrd', 'tmod']
         
     def __str__(self):
         return self.name

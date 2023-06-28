@@ -62,10 +62,10 @@ for i in themedir:
             if temppath["file"].startswith("/static/"):
                 tdata["tstheme"] = temppath
             else:
-                printe(f"lib.py WARNING: tablsorter theme path is invalid: \"{temppath['file']}\". Defaulting to /static/tablesorter/css/theme.default.min.css")
+                printe(f"lib.py WARNING: tablesorter theme path is invalid: \"{temppath['file']}\". Defaulting to /static/tablesorter/css/theme.default.min.css")
                 tdata["tstheme"] = {"file": "/static/tablesorter/css/theme.default.min.css", "name": "default"}
         else:
-            printe(f"lib.py WARNING: tablsorter theme is blank. Defaulting to static/tablesorter/css/theme.default.min.css")
+            printe(f"lib.py WARNING: tablesorter theme is blank. Defaulting to /static/tablesorter/css/theme.default.min.css")
             tdata["tstheme"] = {"file": "/static/tablesorter/css/theme.default.min.css", "name": "default"}
         
         themes[i] = tdata

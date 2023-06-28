@@ -25,6 +25,22 @@
         "ddfile": ""
     },
     {
+        "col": "prns",
+        "datatype": "string",
+        "min": "",
+        "max": "32",
+        "step": "",
+        "ddfile": ""
+    },
+    {
+        "col": "birt",
+        "datatype": "string",
+        "min": "",
+        "max": "32",
+        "step": "",
+        "ddfile": ""
+    },
+    {
         "col": "loca",
         "datatype": "text",
         "min": "",
@@ -221,6 +237,8 @@
         "name": "Name",
         "irln": "Full Real Name",
         "nick": "Nicknames",
+        "prns": "Pronouns",
+        "birt": "Birthday",
         "loca": "Location",
         "dtmt": "Date Met",
         "mtth": "Met Through",
@@ -277,8 +295,8 @@
     },
     "misc": {
         "strftime": "%b %m, %Y, %H:%M %Z",
-        "jquery": "static/jquery/jquery-3.7.0.min.js",
-        "tablesorter": "static/tablesorter/js/jquery.tablesorter.min.js",
-        "tablesorterwidget": "static/tablesorter/js/jquery.tablesorter.widgets.min.js"
+        "jquery": "/static/jquery/jquery-3.7.0.min.js",
+        "tablesorter": "/static/tablesorter/js/jquery.tablesorter.min.js",
+        "tablesorterwidget": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"
     }
 }}
