@@ -36,11 +36,6 @@ except KeyError:
 # Add any hosts needed here
 ALLOWED_HOSTS = []
 
-# Allow local networks
-ALLOWED_HOSTS.append("127.0.0.1")
-ALLOWED_HOSTS.append("192.168.*.*")
-ALLOWED_HOSTS.append("10.*.*.*")
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
