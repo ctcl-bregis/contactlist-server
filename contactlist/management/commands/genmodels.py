@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - June 19, 2023
+# Date: June 9, 2023 - June 27, 2023
 # Purpose: Management command for generating database models, form data and other files
 
 # Valid data types
@@ -33,7 +33,6 @@ def configchoices(dbconfig, ddconfig, themes):
     choicelist += "]\n\n"
     
     themedd = choicelist
-        
             
     d = datetime.now(timezone.utc)
     choicespy = """# ContactList - CTCL 2023
@@ -65,10 +64,10 @@ def configmodels(dbconfig):
         else:
             print(f"WARNING: Unknown datatype \"{dt}\", skipping")
         
-    colnames = [i["col"] for i in dbconfig]
+    colnames = ["inid"] + [i["col"] for i in dbconfig]
     colnames.append("tcrd")
     colnames.append("tmod")
-    todict = "\"inid\": self.inid, "
+    todict = ""
     for i in colnames:
         todict += f"\"{i}\": self.{i}, "
     todict = "return {" + todict + "}"
@@ -97,10 +96,13 @@ class ContactItem(models.Model):
     def todict(self):
         {todict}
         
+    def fieldnames():
+        return {colnames}
+        
     def __str__(self):
         return self.name
 
-""".format(date = d.strftime("%B %e, %Y"), table = table, todict = todict)
+""".format(date = d.strftime("%B %e, %Y"), table = table, todict = todict, colnames = colnames)
     
     return modelspy
     

@@ -2,5 +2,6 @@
     "disp_name": "Flat Dark - Default",
     "int_name": "default",
     "css": "style.css",
-    "logo": ""
+    "logo": "",
+    "tstheme": {"file": "static/tablesorter/css/theme.dark.min.css", "name": "dark"}
 }}

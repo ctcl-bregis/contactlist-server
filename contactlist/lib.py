@@ -1,11 +1,12 @@
 # ContactList - CTCL 2023
-# Date: May 4, 2023 (Reused from CAMS) - June 23, 2023
+# Date: May 4, 2023 (Reused from CAMS) - June 28, 2023
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 
 from datetime import datetime, timezone
 import json, base64
 from os import listdir
 from os.path import isdir, join, exists
+from . import __version__
 
 # printe statement that does not raise an exception if the code is running headless
 def printe(text):
@@ -55,15 +56,35 @@ for i in themedir:
             printe(f"lib.py WARNING: Logo path is blank in theme \"{i}\", ignoring")
             tdata["logo"] = ""
         
+        temppath = jdata["theme"]["tstheme"]
+        if temppath != "":
+            # TODO: Detect if the theme file exists
+            if temppath["file"].startswith("static/"):
+                tdata["tstheme"] = temppath
+            else:
+                printe(f"lib.py WARNING: tablsorter theme path is invalid: \"{temppath['file']}\". Defaulting to static/tablesorter/css/theme.default.min.css")
+                tdata["tstheme"] = {"file": "static/tablesorter/css/theme.default.min.css", "name": "default"}
+        else:
+            printe(f"lib.py WARNING: tablsorter theme is blank. Defaulting to static/tablesorter/css/theme.default.min.css")
+            tdata["tstheme"] = {"file": "static/tablesorter/css/theme.default.min.css", "name": "default"}
+        
         themes[i] = tdata
     except FileNotFoundError:
         printe(f"lib.py WARNING: Theme \"{i}\" does not have a index.json, it would not be available")
         pass
 
+# Get a specific part/key of the config
+def getconfig(part):
+    try:
+        return jsondata["config"][part]
+    except KeyError:
+        printe(f"lib.py WARNING: Key \"{part}\" does not exist in config/config.json")
+        return None
+
 # Timestamp to formatted date
 def dt2fmt(dt):
     # TODO: have strfstr read from a config file
-    strfstr = "%b %m, %Y, %H:%M %Z"
+    strfstr = getconfig("misc")["strftime"]
 
     return dt.strftime(strfstr)
 
@@ -91,15 +112,13 @@ def theme(tname):
         return themes[tname]
     except KeyError:
         printe(f"lib.py WARNING: Theme \"{tname}\" not found, using default")
-        return themes["default"] 
+        return themes["default"]
         
-#
-def getconfig(part):
-    try:
-        return jsondata["config"][part]
-    except KeyError:
-        printe(f"lib.py WARNING: Key \"{part}\" does not exist in config/config.json")
-        return None
-
-
-
+# Function to prefill context data to make views smaller
+def mkcontext(request, title):
+    context = {"title": title, "styling": theme(request.COOKIES.get("theme")), "misc": getconfig("misc"), "navbar": navbar, "ver": __version__}
+    return context
+    
+    
+    
+        

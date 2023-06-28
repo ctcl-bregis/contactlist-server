@@ -54,7 +54,35 @@ h1, h2, h3, h4, h5 {
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
+.btn-group-rlmenu {
+    padding: 4pt;
+    margin: 2pt;
+    display: block;
+}
 
+.btn-group-rlmenu button {
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-group-rlmenu a, .btn-group-rlmenu form {
+    width: 100%;
+    margin: 2pt;
+    text-decoration: none;
+}
+
+form {
+    width: 100%;
+}
+
+input[type="submit"] {
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    margin: 2pt;
+}
+
+input{box-sizing:border-box} 

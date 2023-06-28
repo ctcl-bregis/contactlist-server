@@ -79,14 +79,9 @@ table td {
     background-color: #DDDDDD;
 }
 
-.btn-group-rlmenu {
-    display: flex;
-}
-
 .btn-group-rlmenu button {
     background-color: #FFFFFF;
     border: 0.5pt solid #000000;
-    margin: 4pt;
     color: #000000;
     padding: 10px 24px;
     cursor: pointer;
@@ -118,10 +113,10 @@ table td {
 input[type="submit"] {
     background-color: #FFFFFF;
     border: 0.5pt solid #000000;
-    margin: 4pt;
     color: #000000;
     padding: 10px 24px;
-    cursor: pointer;
-    display: block;
-    width: 98.5%;
+}
+
+.sort-options i {
+    color: #FFFFFF;
 }

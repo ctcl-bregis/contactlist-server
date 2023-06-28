@@ -1,3 +1,13 @@
+## 0.4.0 - June 28, 2023 - Sorting Update
+
+Added: 
+- Added [tablesorter](https://mottie.github.io/tablesorter/) along with JQuery for the main page table, allowing fields to be sorted
+- Confirmation for deleting items
+- Ability to export all data as a CSV file
+
+Fixes:
+- Added mkcontext to lib.py for pre-filling the dictionary passed as the context for templates. This can make debugging code easier. 
+
 ## 0.3.0 - June 23, 2023 - Font Awesome update
 
 Added:

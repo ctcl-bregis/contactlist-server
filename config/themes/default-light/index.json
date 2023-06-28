@@ -2,5 +2,6 @@
     "disp_name": "Flat Light",
     "int_name": "default-light",
     "css": "style.css",
-    "logo": ""
+    "logo": "",
+    "tstheme": {"file": "static/tablesorter/css/theme.default.min.css", "name": "default"}
 }}

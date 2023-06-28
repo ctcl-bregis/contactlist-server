@@ -5,8 +5,13 @@
         <title>{{ title }}</title>
         <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+        <!-- TODO: figure out a way to disable the loading of JQuery/tablesorter when it is not needed -->
+        <link rel="stylesheet" href="{{ styling.tstheme.file }}">
+        <script type="text/javascript" src="{{ misc.jquery }}"></script>
+        <script type="text/javascript" src="{{ misc.tablesorter }}"></script>
+        <script type="text/javascript" src="{{ misc.tablesorterwidget }}"></script>
         <style>
-{{ styling|safe }}
+{{ styling.styling|safe }}
         </style>
     </head>
     <body>
