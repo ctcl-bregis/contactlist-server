@@ -294,7 +294,7 @@
         ]
     },
     "misc": {
-        "strftime": "%b %m, %Y, %H:%M %Z",
+        "strftime": "%b %d, %Y, %H:%M %Z",
         "jquery": "/static/jquery/jquery-3.7.0.min.js",
         "tablesorter": "/static/tablesorter/js/jquery.tablesorter.min.js",
         "tablesorterwidget": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"

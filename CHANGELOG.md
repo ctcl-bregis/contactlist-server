@@ -1,3 +1,9 @@
+## 0.4.2 - June 29, 2023 - Time fix
+
+Fixes:
+- Fixed strftime string
+- CSS fixes
+
 ## 0.4.1 - June 28, 2023 - More Data?
 
 Additions:
