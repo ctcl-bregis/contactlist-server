@@ -104,6 +104,8 @@ def new(request):
             newentry.save()
             
             return HttpResponseRedirect("/")
+        else:
+            return HttpResponseRedirect("/")
     else:    
         form = ContactForm()
         
@@ -129,6 +131,8 @@ def edit(request, inid):
             data = ContactItem.objects.get(pk=inid)
             data.tmod = datetime.now()
             data.save()
+            return HttpResponseRedirect("/")
+        else:
             return HttpResponseRedirect("/")
     else:
         data = ContactItem.objects.get(pk=inid)
@@ -197,6 +201,8 @@ def search(request):
             context["data"] = allitems
             
             return render(request, "results.html", context)
+        else:
+            return HttpResponseRedirect("/")
     else:
         context = lib.mkcontext(request, "ContactList - Search")
         context["form"] = SearchForm()
@@ -210,6 +216,8 @@ def settings(request):
             response = HttpResponseRedirect("/")
             response.set_cookie("theme", form.cleaned_data["theme"])
             return response
+        else:
+            return HttpResponseRedirect("/")
     else:
         form = SettingsForm()
         
