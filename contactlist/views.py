@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from django.template.defaulttags import register
-from django.db.models import CharField, Q
+from django.db.models import CharField, TextField, Q
 from datetime import datetime
 from . import lib
 from .lib import printe
@@ -170,7 +170,7 @@ def search(request):
             searchquery = form.cleaned_data["query"]
             
             # Quick hack until Haystack or something is implemented
-            fields = [f for f in ContactItem._meta.fields if isinstance(f, CharField)]
+            fields = [f for f in ContactItem._meta.fields if isinstance(f, CharField) or isinstance(f, TextField)]
             # "icontains" may not function correctly with SQLite3, see Django documentation for details
             queries = [Q(**{f.name + "__icontains": searchquery}) for f in fields]
             qs = Q()
