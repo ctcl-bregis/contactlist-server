@@ -4,7 +4,6 @@
 
 from datetime import datetime, timezone
 import json, base64
-from css_html_js_minify import process_single_css_file
 from os import listdir
 from os.path import isdir, join, exists
 from . import __version__
