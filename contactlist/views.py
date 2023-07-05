@@ -69,8 +69,7 @@ def view(request, inid):
     
     # Remove database ID
     data.pop("inid")
-    headers = lib.getconfig("headers")    
-    navbar = lib.navbar()
+    headers = lib.getconfig("headers")
 
     context = lib.mkcontext(request, "ContactList - View")
     context["headers"] = headers
