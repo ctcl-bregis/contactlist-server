@@ -1,12 +1,12 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - June 27, 2023
+# Date: June 9, 2023 - July 4, 2023
 # Purpose: Main application views
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from django.template.defaulttags import register
-#from django.views.generic import ListView
+from django.db.models import CharField, Q
 from datetime import datetime
 from . import lib
 from .lib import printe
@@ -18,14 +18,21 @@ except ModuleNotFoundError:
     pass
 
 try:
-    from .fields import ContactForm, SettingsForm
+    from .fields import ContactForm, SettingsForm, SearchForm
+except ModuleNotFoundError:
+    pass
+    
+try:
+    from .choices import Choices
 except ModuleNotFoundError:
     pass
 
+# {{ dict|get_item:key }}
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
     
+# "Main" page that currently lists everything
 def index(request):
     template = loader.get_template("main.html")
     headers = lib.getconfig("headers")
@@ -49,11 +56,38 @@ def index(request):
         tmplst.append(i)
     allitems = tmplst
     
-    navbar = lib.navbar()
-    
-    context = lib.mkcontext(request, "ContactList - List")
+    context = lib.mkcontext(request, "ContactList - List", "table")
     context["headers"] = columns
     context["data"] = allitems
+    return HttpResponse(template.render(context, request))
+
+def view(request, inid):
+    template = loader.get_template("view.html")
+    dbitem = ContactItem.objects.get(pk=inid)
+    data = dbitem.todict()
+    cfgdata = ContactItem.cfgdata()
+    
+    # Remove database ID
+    data.pop("inid")
+    headers = lib.getconfig("headers")    
+    navbar = lib.navbar()
+
+    context = lib.mkcontext(request, "ContactList - View")
+    context["headers"] = headers
+    context["data"] = data
+
+    allchoices = Choices.choicedict
+
+    # Remove tcrd and tmod froim the "data" dictionary to prevent errors; tcrd and tmod have already been put into the context
+    data.pop("tcrd")
+    data.pop("tmod")
+    for field in data.keys():
+        if cfgdata[field]["datatype"] == "select":
+            getchoices = allchoices[cfgdata[field]["ddfile"]]
+            for k, v in getchoices.items():
+                if data[field] == k:
+                    data[field] = v
+ 
     return HttpResponse(template.render(context, request))
 
 def new(request):
@@ -68,31 +102,24 @@ def new(request):
             dt = datetime.now()
             setattr(newentry, "tcrd", dt)
             setattr(newentry, "tmod", dt)
-            
             newentry.save()
             
             return HttpResponseRedirect("/")
-    else:
-        form = ContactForm
+    else:    
+        form = ContactForm()
+        
+        tableconfig = lib.getconfig("table")
+        
+        context = lib.mkcontext(request, "ContactList - New", "form")
+        context["form"] = form
+        context["groups"] = lib.getconfig("tablecats")
+        context["groupnames"] = lib.getconfig("tablecats").keys()
+        
+        context["groupednames"] = {}
+        for x in tableconfig.keys():
+            context["groupednames"][x] = [i["col"] for i in tableconfig[x]]
     
-    context = lib.mkcontext(request, "ContactList - New")
-    context["form"] = form
-    return render(request, "new.html", context)
-
-
-def view(request, inid):
-    template = loader.get_template("view.html")
-    dbitem = ContactItem.objects.get(pk=inid)
-    data = dbitem.todict()
-    # Remove database ID
-    data.pop("inid")
-    headers = lib.getconfig("headers")    
-    navbar = lib.navbar()
-    
-    context = lib.mkcontext(request, "ContactList - View")
-    context["headers"] = headers
-    context["data"] = data
-    return HttpResponse(template.render(context, request))
+        return render(request, "new.html", context)
 
 def edit(request, inid):
     if request.method == "POST":
@@ -108,19 +135,74 @@ def edit(request, inid):
         data = ContactItem.objects.get(pk=inid)
         form = ContactForm(initial = data.todict())
         
-        context = lib.mkcontext(request, "ContactList - Edit")
+        tableconfig = lib.getconfig("table")
+        
+        context = lib.mkcontext(request, "ContactList - Edit", "form")
         context["form"] = form
+        context["groups"] = lib.getconfig("tablecats")
+        context["groupnames"] = lib.getconfig("tablecats").keys()
         context["inid"] = inid
+        
+        context["groupednames"] = {}
+        for x in tableconfig.keys():
+            context["groupednames"][x] = [i["col"] for i in tableconfig[x]]
+        
         return render(request, "edit.html", context)
 
 def delete(request, inid):
     # The button for continuing with deletion would be a form that does not include data
+    # This also allows for the deletion of an item by sending a POST request
     if request.method == "POST":
         dbitem = ContactItem.objects.get(inid=inid)
         dbitem.delete()
         return HttpResponseRedirect("/")
     else:
         return render(request, "delconfirm.html", lib.mkcontext(request, "ContactList - Delete Item"))
+    
+def search(request):
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            context = lib.mkcontext(request, "ContactList - Search", "table")
+            searchquery = form.cleaned_data["query"]
+            
+            # Quick hack until Haystack or something is implemented
+            fields = [f for f in ContactItem._meta.fields if isinstance(f, CharField)]
+            # "icontains" may not function correctly with SQLite3, see Django documentation for details
+            queries = [Q(**{f.name + "__icontains": searchquery}) for f in fields]
+            qs = Q()
+            for query in queries:
+                qs = qs | query
+            
+            allitems = [i.todict() for i in ContactItem.objects.filter(qs)]
+            
+            headers = lib.getconfig("headers")
+            columns = []
+            for i in lib.getconfig("htmltable"):
+                if i["type"] == "info":
+                    i["title"] = headers[i["col"]]
+                elif i["type"] == "button":
+                    i["title"] = ""
+            
+                columns.append(i)
+            
+            tmplst = []
+            for i in allitems:
+                i["tcrd"] = lib.dt2fmt(i["tcrd"])
+                i["tmod"] = lib.dt2fmt(i["tmod"])
+                tmplst.append(i)
+            allitems = tmplst
+    
+            context = lib.mkcontext(request, "ContactList - List", "table")
+            context["headers"] = columns
+            context["data"] = allitems
+            
+            return render(request, "results.html", context)
+    else:
+        context = lib.mkcontext(request, "ContactList - Search")
+        context["form"] = SearchForm()
+        
+        return render(request, "search.html", context)
     
 def settings(request):
     if request.method == "POST":
@@ -146,7 +228,7 @@ def exportcsv(request):
             if isinstance(i[x], datetime):
                 i[x] = lib.dt2fmt(i[x])
     
-    # Create "file" in memory for DictWriter. This is done to minimize disk writes.
+    # Create "file" in memory for DictWriter so it is not written to disk
     memcsv = io.StringIO()
     writer = csv.DictWriter(memcsv, fieldnames = fields, delimiter = ",", quoting = csv.QUOTE_ALL)
     writer.writeheader()
@@ -157,7 +239,3 @@ def exportcsv(request):
     response.write(memcsv.getvalue())
     
     return response
-    
-    
-    
-    

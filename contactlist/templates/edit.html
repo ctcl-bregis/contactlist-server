@@ -3,9 +3,14 @@
         <hr>
         <form action="/edit/{{ inid }}/" method="post">
             {% csrf_token %}
-            <table class="form">
-            {{ form }}
-            </table>
+            {% for group in groupnames %}
+            <h3>{{ groups|get_item:group }}</h3>
+            <table>{% for field in form %}{% if field.name in groupednames|get_item:group %}
+                <tr>
+                    <td>{{ field.label }}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endif %}{% endfor %}</table>{% endfor %}
             <input type="submit" value="Submit">
         </form>
 {% include "footer.html" %}

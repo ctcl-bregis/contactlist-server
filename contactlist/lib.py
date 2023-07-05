@@ -1,9 +1,10 @@
 # ContactList - CTCL 2023
-# Date: May 4, 2023 (Reused from CAMS) - June 28, 2023
+# Date: May 4, 2023 (Reused from CAMS) - July 2, 2023
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 
 from datetime import datetime, timezone
 import json, base64
+from css_html_js_minify import process_single_css_file
 from os import listdir
 from os.path import isdir, join, exists
 from . import __version__
@@ -16,67 +17,16 @@ def printe(text):
         pass
 
 # Load the config on startup instead of every time a function needs it
-with open("config/config.json") as f:
-    jsondata = json.loads(f.read())
-
-themes = {}
-
-themedir = [f for f in listdir("config/themes") if isdir(join("config/themes", f))]
-for i in themedir:
-    tdata = {}
-    try:
-        with open(f"config/themes/{i}/index.json") as f:
-            jdata = dict(json.load(f))
-        
-        temppath = jdata["theme"]["css"]
-        if temppath != "":
-            try:
-                with open(f"config/common/base.css") as f:
-                    tdata["styling"] = f.read()
-            except FileNotFoundError:
-                printe(f"lib.py WARNING: config/common/base.css does not exist")
-                
-            try:
-                with open(f"config/themes/{i}/{temppath}") as f:
-                    tdata["styling"] += f.read()
-            except FileNotFoundError:
-                printe(f"lib.py WARNING: config/themes/{i}/{temppath} does not exist")
-        else:
-            printe(f"lib.py WARNING: Styling path is blank in theme \"{i}\", ignoring")
-            tdata["themecss"] = ""
-        
-        temppath = jdata["theme"]["logo"]
-        if temppath != "":
-            try:
-                with open(f"config/themes/{i}/{temppath}") as f:
-                    tdata["logo"] = "data:image/svg+xml;base64," + base64.b64encode(f.read().encode("utf-8")).decode("utf-8")
-            except FileNotFoundError:
-                printe(f"lib.py WARNING: config/themes/{i}/{temppath} does not exist")
-        else:
-            printe(f"lib.py WARNING: Logo path is blank in theme \"{i}\", ignoring")
-            tdata["logo"] = ""
-        
-        temppath = jdata["theme"]["tstheme"]
-        if temppath != "":
-            # TODO: Detect if the theme file exists
-            if temppath["file"].startswith("/static/"):
-                tdata["tstheme"] = temppath
-            else:
-                printe(f"lib.py WARNING: tablesorter theme path is invalid: \"{temppath['file']}\". Defaulting to /static/tablesorter/css/theme.default.min.css")
-                tdata["tstheme"] = {"file": "/static/tablesorter/css/theme.default.min.css", "name": "default"}
-        else:
-            printe(f"lib.py WARNING: tablesorter theme is blank. Defaulting to /static/tablesorter/css/theme.default.min.css")
-            tdata["tstheme"] = {"file": "/static/tablesorter/css/theme.default.min.css", "name": "default"}
-        
-        themes[i] = tdata
-    except FileNotFoundError:
-        printe(f"lib.py WARNING: Theme \"{i}\" does not have a index.json, it would not be available")
-        pass
+try:
+    with open("config/config.json") as f:
+        jsondata = json.loads(f.read())["config"]
+except (json.JSONDecodeError, json.decoder.JSONDecodeError) as e:
+    printe(f"lib.py ERROR: Exception \"{e}\" raised by JSON library")
 
 # Get a specific part/key of the config
 def getconfig(part):
     try:
-        return jsondata["config"][part]
+        return jsondata[part]
     except KeyError:
         printe(f"lib.py WARNING: Key \"{part}\" does not exist in config/config.json")
         return None
@@ -98,27 +48,49 @@ def hsize(fsize):
         fsize /= 1024.0
         
     return f"{num:.1f}Yi{suffix}"
-   
-# Active page, cfgpath has a default value that can be overridden
-def navbar(active = "", cfgpath = "config/navbar.json"):
-    with open(cfgpath) as f:
-        jdata = dict(json.load(f))
-        
-    return jdata
+
+# Function to prefill context data to make views smaller
+def mkcontext(request, title, scripts="none"):
+    context = {"title": title, "styling": theme(request.COOKIES.get("theme")), "misc": getconfig("misc"), "navbar": getconfig("navbar"), "ver": __version__}
+    
+    # font - Load just fontawesome
+    # form - Load JQuery and Select2
+    # table - Load JQuery, fontawesome and tablesorter
+    if scripts == "font":
+        context["fa"] = True
+        context["jq"] = False
+        context["ts"] = False
+        context["s2"] = False
+    elif scripts == "form":
+        context["fa"] = False
+        context["jq"] = True
+        context["ts"] = False
+        context["s2"] = True
+    elif scripts == "table":
+        context["fa"] = True
+        context["jq"] = True
+        context["ts"] = True
+        context["s2"] = False
+    else:
+        context["fa"] = False
+        context["jq"] = False
+        context["ts"] = False
+        context["s2"] = False
+    
+    return context
+
+if exists("themecfg.json"):
+    with open("themecfg.json") as f:
+        themes = json.loads(f.read())
+else:
+    printe("lib.py ERROR: themecfg.json does not exist, it may not have been generated yet")
+    themes = {}
 
 # Return theme data
-def theme(tname):
+def theme(tname):    
     try:
         return themes[tname]
     except KeyError:
         printe(f"lib.py WARNING: Theme \"{tname}\" not found, using default")
         return themes["default"]
-        
-# Function to prefill context data to make views smaller
-def mkcontext(request, title):
-    context = {"title": title, "styling": theme(request.COOKIES.get("theme")), "misc": getconfig("misc"), "navbar": navbar, "ver": __version__}
-    return context
-    
-    
-    
         

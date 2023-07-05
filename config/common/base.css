@@ -4,10 +4,41 @@ body {
 
 table {
     width: 100%;
+    border-spacing: 0pt;
 }
 
 h1, h2, h3, h4, h5 {
     text-align: center;
+}
+
+h1, h2, h3, h4, h5, p, p a {
+    padding: 4pt;
+    margin: 2pt;
+}
+
+table.view, table.form {
+    border-spacing: 0pt;
+}
+
+table.form td, table.form th {
+    border: 0;
+    border-style: solid;
+    margin: 0pt;
+    padding: 2pt;
+}
+
+form {
+    max-width: 100%;
+    margin: 4pt;
+}
+
+form table {
+    max-width: 100%;
+}
+
+form table tr td {
+    max-width: 50%;
+    width: 50%;
 }
 
 .content {
@@ -57,24 +88,35 @@ h1, h2, h3, h4, h5 {
     display: block;
 }
 
-.btn-group-rlmenu {
-    padding: 4pt;
-    display: block;
-}
-
-.btn-group-rlmenu button {
-    width: 100%;
+.actbutton {
+    margin: 0pt;
+    padding: 0pt;
     cursor: pointer;
 }
 
-.btn-group-rlmenu a, .btn-group-rlmenu form {
+.btn-group-rlmenu {
+    display: block;
+    margin: 4pt;
+}
+
+.btn-group-rlmenu button {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 4pt;
+    cursor: pointer;
+}
+
+.btn-group-rlmenu a {
+    max-width: 100%;
     width: 100%;
     text-decoration: none;
 }
 
-form {
+.btn-group-rlmenu form {
     max-width: 100%;
-    margin: 4pt;
+    width: 100%;
+    text-decoration: none;
+    margin: 0;
 }
 
 input[type="submit"] {
@@ -85,5 +127,6 @@ input[type="submit"] {
 }
 
 input {
+    max-width: 100%;
     box-sizing: border-box;
 } 

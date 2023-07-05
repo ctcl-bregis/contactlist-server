@@ -8,11 +8,6 @@ a {
     color: #FFFFFF;
 }
 
-h1, h2, h3, h4, h5, p, p a {
-    padding: 4pt;
-    margin: 2pt;
-}
-
 .docs_browse table {
     color: #FFFFFF;
     padding: 4pt;
@@ -26,21 +21,6 @@ h1, h2, h3, h4, h5, p, p a {
 
 .docs_browse_link:hover {
     background-color: #222222;
-}
-
-table.view, table.form {
-    border-spacing: 0pt;
-}
-
-table.form td, table.form th {
-    border: 0;
-    border-style: solid;
-    margin: 0pt;
-    padding: 2pt;
-}
-
-table {
-    border-spacing: 0pt;
 }
 
 .navbar ul {
@@ -71,14 +51,16 @@ table {
     cursor: pointer;
 }
 
-.btn-group-rlmenu a {
-    text-decoration: none;
+.btn-group-rlmenu button a {
+    color: #000000;
 }
 
-.actbutton {
-    margin: 0pt;
-    padding: 0pt;
-    cursor: pointer;
+.btn-group-rlmenu button:hover {
+    background-color: #DDDDDD;
+}
+
+.btn-group-rlmenu a {
+    text-decoration: none;
 }
 
 .actbutton a button {
@@ -89,15 +71,15 @@ table {
     cursor: pointer;
 }
 
-.form td {
-    border: 0;
-}
-
 input[type="submit"] {
     background-color: #FFFFFF;
     border: 0.5pt solid #000000;
     color: #000000;
     padding: 10px 24px;
+}
+
+input[type="submit"]:hover {
+    background-color: #DDDDDD;
 }
 
 .sort-options i {

@@ -1,16 +1,42 @@
+## 0.5.0 - July 4, 2023 - Browser Update
+
+Additions:
+
+- Search feature
+- Form categories
+- CSS minification for themes
+
+Changes:
+- The navigation bar no longer has a separate configuration file and is now part of config.json
+- choices.py now consists of a single dictionary definition instead of a list of tuples for each dropdown field
+- Dropdown choices in config.json are now stored in a dictionary instead of a list of lists 
+
+Fixes:
+
+- Social media platform is properly displayed under "View"
+- Better error handling in genmodels
+- JQuery is now loaded only when it is needed
+- tablesorter is now loaded only when it is needed
+- Font Awesome icons are now loaded only when it is needed
+- CSS cleanup
+- CSS fixes
+
 ## 0.4.2 - June 29, 2023 - Time fix
 
 Fixes:
+
 - Fixed strftime string
 - CSS fixes
 
 ## 0.4.1 - June 28, 2023 - More Data?
 
 Additions:
+
 - More table fields in config.json
 - More social platforms added to the dropdown
 
 Fixes:
+
 - Removed unused "name" fields from table configuration in config.json
 - Fixed paths for tablesorter static files
 - CSS fixes
@@ -18,11 +44,13 @@ Fixes:
 ## 0.4.0 - June 28, 2023 - Sorting Update
 
 Added: 
+
 - Added [tablesorter](https://mottie.github.io/tablesorter/) along with JQuery for the main page table, allowing fields to be sorted
 - Confirmation for deleting items
 - Ability to export all data as a CSV file
 
 Fixes:
+
 - Added mkcontext to lib.py for pre-filling the dictionary passed as the context for templates. This can make debugging code easier. 
 
 ## 0.3.0 - June 23, 2023 - Font Awesome update

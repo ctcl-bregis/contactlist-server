@@ -4,45 +4,6 @@ body {
     color: #000000;
 }
 
-a {
-    color: #000000;
-}
-
-h1, h2, h3, h4, h5, p, p a {
-    padding: 4pt;
-    margin: 2pt;
-}
-
-.docs_browse table {
-    color: #000000;
-    padding: 4pt;
-    margin: 0;
-}
-
-.docs_browse_link a {
-    text-decoration: none;
-    color: #000000;
-}
-
-.docs_browse_link:hover {
-    background-color: #222222;
-}
-
-table.view, table.form {
-    border-spacing: 0pt;
-}
-
-table.form td, table.form th {
-    border: 0;
-    border-style: solid;
-    margin: 0pt;
-    padding: 2pt;
-}
-
-table {
-    border-spacing: 0pt;
-}
-
 .navbar ul {
     background-color: #000000;
 }
@@ -65,20 +26,22 @@ table {
 
 .btn-group-rlmenu button {
     background-color: #000000;
-    border: 0.5pt solid #000000;
+    border: 0.5pt solid #FFFFFF;
     color: #FFFFFF;
     padding: 10px 24px;
     cursor: pointer;
 }
 
-.btn-group-rlmenu a {
-    text-decoration: none;
+.btn-group-rlmenu button:hover {
+    background-color: #222222;
 }
 
-.actbutton {
-    margin: 0pt;
-    padding: 0pt;
-    cursor: pointer;
+.btn-group-rlmenu button a {
+    color: #FFFFFF;
+}
+
+.btn-group-rlmenu a {
+    text-decoration: none;
 }
 
 .actbutton a button {
@@ -89,17 +52,17 @@ table {
     cursor: pointer;
 }
 
-.form td {
-    border: 0;
-}
-
 input[type="submit"] {
     background-color: #000000;
-    border: 0.5pt solid #000000;
+    border: 0.5pt solid #FFFFFF;
     color: #FFFFFF;
     padding: 10px 24px;
 }
 
+input[type="submit"]:hover {
+    background-color: #222222;
+}
+
 .sort-options i {
-    color: #FFFFFF;
+    color: #000000;
 }
