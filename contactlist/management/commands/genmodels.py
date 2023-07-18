@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - July 4, 2023
+# Date: June 9, 2023 - July 18, 2023
 # Purpose: Management command for generating database models, form data and other files
 
 # Valid data types
@@ -50,17 +50,13 @@ def configmodels(jsonconfig):
             cfgdata[y["col"]] = y
         
             if dt in "select":
-                table += f"    {y['col']} = models.CharField(blank = True, max_length = 128, choices = Choices.totuplelist(\"{y['ddfile']}\"))\n" 
-                table += f"    {y['col']}.group = \"{x}\"\n"
+                table += f"    {y['col']} = models.CharField(blank = True, max_length = 128, choices = Choices.totuplelist(\"{y['ddfile']}\"))\n    {y['col']}.group = \"{x}\"\n" 
             elif dt == "string":
-                table += f"    {y['col']} = models.CharField(blank = True, max_length = {y['max']})\n"
-                table += f"    {y['col']}.group = \"{x}\"\n"
+                table += f"    {y['col']} = models.CharField(blank = True, max_length = {y['max']})\n    {y['col']}.group = \"{x}\"\n"
             elif dt == "text":
-                table += f"    {y['col']} = models.TextField(blank = True, null = True)\n"
-                table += f"    {y['col']}.group = \"{x}\"\n"
+                table += f"    {y['col']} = models.TextField(blank = True, null = True)\n    {y['col']}.group = \"{x}\"\n"
             elif dt == "date":
-                table += f"    {y['col']} = models.DateField(null = True)\n"
-                table += f"    {y['col']}.group = \"{x}\"\n"
+                table += f"    {y['col']} = models.DateField(null = True)\n    {y['col']}.group = \"{x}\"\n"
             else:
                 print(f"WARNING: Unknown datatype \"{dt}\", skipping")
     
@@ -115,7 +111,6 @@ class ContactItem(models.Model):
         
     def __str__(self):
         return self.name
-
 """.format(date = d.strftime("%B %e, %Y"), table = table, groups = groups, todict = todict, cfgdata = cfgdata, colnames = colnames)
     
     return modelspy
@@ -204,20 +199,14 @@ class Command(BaseCommand):
         
         themes = {}
         for theme in themeindices:
-            # temporary dictionary for appending to the output
-            themecfg = {}
-            
             themedir = os.path.join("config/themes", theme["int_name"])
             themeind = os.path.join(themedir, "index.json")
             
             if os.path.exists(themeind):
-                with open(themeind) as f:
-                    themecfg = json.loads(f.read())["theme"]
-                    
-                with open(themecfg["css"]) as f:
-                    themecfg["css"] = compress(basecss + f.read())
+                with open(theme["css"]) as f:
+                    theme["css"] = compress(basecss + f.read())
                 
-                themes[themecfg["int_name"]] = themecfg
+                themes[theme["int_name"]] = theme
             else:
                 print(f"themecfg.py WARNING: Theme directory \"{themedir}\" does not have an index.json. The theme would not be available.")
         

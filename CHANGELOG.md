@@ -1,3 +1,13 @@
+## 0.5.2 - July 18, 2023 - Mobile-Friendy Update
+
+Changes:
+
+- Code optimizations
+
+Fixes:
+
+- CSS fixes specific to having the application more usable on phones and other vertical displays
+
 ## 0.5.1 - July 5, 2023 - Chromebook Hotfix
 
 Fixes:

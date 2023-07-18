@@ -1,5 +1,5 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - July 4, 2023
+# Date: June 9, 2023 - July 18, 2023
 # Purpose: Main application views
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -62,22 +62,25 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def view(request, inid):
+    context = lib.mkcontext(request, "ContactList - View")
     template = loader.get_template("view.html")
-    dbitem = ContactItem.objects.get(pk=inid)
-    data = dbitem.todict()
     cfgdata = ContactItem.cfgdata()
     
+    # Get data for the specific item by the database ID
+    dbitem = ContactItem.objects.get(pk=inid)
+    data = dbitem.todict()
     # Remove database ID
     data.pop("inid")
-    headers = lib.getconfig("headers")
-
-    context = lib.mkcontext(request, "ContactList - View")
+    
+    headers = lib.getconfig("headers")    
     context["headers"] = headers
+    
+    # Data dictionary, now without the database ID
     context["data"] = data
 
     allchoices = Choices.choicedict
 
-    # Remove tcrd and tmod froim the "data" dictionary to prevent errors; tcrd and tmod have already been put into the context
+    # Remove tcrd and tmod from the "data" dictionary to prevent errors; tcrd and tmod have already been put into the context
     data.pop("tcrd")
     data.pop("tmod")
     for field in data.keys():
