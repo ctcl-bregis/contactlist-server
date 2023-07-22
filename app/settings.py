@@ -35,7 +35,7 @@ except KeyError:
 # Add any hosts needed here
 # All hosts allowed for now, probably not a good idea
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://*", "http://*"]
+CSRF_TRUSTED_ORIGINS = ["https://192.168.0.*"]
 
 # Application definition
 INSTALLED_APPS = [
