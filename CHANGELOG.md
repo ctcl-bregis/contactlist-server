@@ -1,3 +1,15 @@
+## 0.6.0 - [UNRELEASED] - Media Update
+
+Additions:
+
+- Addition of martor for markdown editor fields, along with the new datatype "mdtext"
+- Copied the Integrated Documentation feature of CAMS into ContactList
+
+Changes:
+
+- Site themes are now Bootstrap with custom colors, this resulted in a rewrite of the themes, how themes are handled and theme CSS
+- Indentation fixes in config.json
+
 ## 0.5.2 - July 18, 2023 - Mobile-Friendy Update
 
 Changes:

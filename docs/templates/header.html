@@ -4,7 +4,7 @@
     <head lang="en">
         <title>{{ title }}</title>
         <meta charset="UTF-8">
-        <meta name="generator" content="ContactList {{ ver }}">
+        <meta name="generator" content="CAMS {{ ver }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">{% if fa %}
         <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
@@ -13,19 +13,11 @@
         <link rel="stylesheet" href="{{ styling.tstheme.file }}">
         <script type="text/javascript" src="{{ misc.tablesorter }}"></script>
         <script type="text/javascript" src="{{ misc.tablesorterwidget }}"></script>{% endif %}
-        {% load bootstrap5 %}
-        {% bootstrap_css %}
-        {% bootstrap_javascript %}
         <style>
 {{ styling.css|safe }}
         </style>
     </head>
     <body>
-
-        {% if %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-
         <div class="navbar">
             <ul>{% for item in navbar %}
                 {% if item.type == "dropdown" %}

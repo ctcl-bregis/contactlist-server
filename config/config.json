@@ -1,4 +1,12 @@
 {"config": {
+    "misc": {
+        "strftime": "%b %-d, %Y, %H:%M %Z",
+        "logotext": "ContactList",
+        "basecss": "config/common/base.css",
+        "jquery": "/static/jquery/jquery-3.7.0.min.js",
+        "tablesorter": "/static/tablesorter/js/jquery.tablesorter.min.js",
+        "tablesorterwidget": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"
+    },
     "tablecats": {
         "personal": "Personal Information",
         "relation": "Relation",
@@ -7,241 +15,244 @@
     },
     "table": {
         "personal": [
-        {
-            "col": "name",
-            "datatype": "string",
-            "min": "",
-            "max": "128",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "irln",
-            "datatype": "string",
-            "min": "",
-            "max": "128",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "nick",
-            "datatype": "string",
-            "min": "",
-            "max": "128",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "prns",
-            "datatype": "string",
-            "min": "",
-            "max": "32",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "birt",
-            "datatype": "string",
-            "min": "",
-            "max": "32",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "loca",
-            "datatype": "text",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "appe",
-            "datatype": "text",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": ""
-        }],
+            {
+                "col": "name",
+                "datatype": "string",
+                "min": "",
+                "max": "128",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "irln",
+                "datatype": "string",
+                "min": "",
+                "max": "128",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+               "col": "nick",
+               "datatype": "string",
+               "min": "",
+               "max": "128",
+               "step": "",
+               "ddfile": ""
+            },
+            {
+                "col": "prns",
+                "datatype": "string",
+                "min": "",
+                "max": "32",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "birt",
+                "datatype": "string",
+                "min": "",
+                "max": "32",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "loca",
+                "datatype": "text",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "appe",
+                "datatype": "text",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": ""
+            }
+        ],
         "relation": [
-        {
-            "col": "dtmt",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "mtth",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "seen",
-            "datatype": "string",
-            "min": "",
-            "max": "32",
-            "step": "",
-            "ddfile": ""
-        }],
+            {
+                "col": "dtmt",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "mtth",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "seen",
+                "datatype": "string",
+                "min": "",
+                "max": "32",
+                "step": "",
+                "ddfile": ""
+            }
+        ],
         "contact": [
-        {
-            "col": "smp1",
-            "datatype": "select",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": "socials"
-        },
-        {
-            "col": "smu1",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "smp2",
-            "datatype": "select",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": "socials"
-        },
-        {
-            "col": "smu2",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "smp3",
-            "datatype": "select",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": "socials"
-        },
-        {
-            "col": "smu3",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "smp4",
-            "datatype": "select",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": "socials"
-        },
-        {
-            "col": "smu4",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "smp5",
-            "datatype": "select",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": "socials"
-        },
-        {
-            "col": "smu5",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "smp6",
-            "datatype": "select",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": "socials"
-        },
-        {
-            "col": "smu6",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "ema1",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "ema2",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "ema3",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "ema4",
-            "datatype": "string",
-            "min": "",
-            "max": "64",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "nphn",
-            "datatype": "string",
-            "min": "",
-            "max": "32",
-            "step": "",
-            "ddfile": ""
-        }],
+            {
+                "col": "smp1",
+                "datatype": "select",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": "socials"
+            },
+            {
+                "col": "smu1",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "smp2",
+                "datatype": "select",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": "socials"
+            },
+            {
+                "col": "smu2",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "smp3",
+                "datatype": "select",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": "socials"
+            },
+            {
+                "col": "smu3",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "smp4",
+                "datatype": "select",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": "socials"
+            },
+            {
+                "col": "smu4",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "smp5",
+                "datatype": "select",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": "socials"
+            },
+            {
+                "col": "smu5",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "smp6",
+                "datatype": "select",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": "socials"
+            },
+            {
+                "col": "smu6",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "ema1",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "ema2",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "ema3",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "ema4",
+                "datatype": "string",
+                "min": "",
+                "max": "64",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "nphn",
+                "datatype": "string",
+                "min": "",
+                "max": "32",
+                "step": "",
+                "ddfile": ""
+            }
+        ],
         "other": [
-        {
-            "col": "empl",
-            "datatype": "text",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": ""
-        },
-        {
-            "col": "note",
-            "datatype": "text",
-            "min": "",
-            "max": "",
-            "step": "",
-            "ddfile": ""
-        }
+            {
+                "col": "empl",
+                "datatype": "mdtext",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": ""
+            },
+            {
+                "col": "note",
+                "datatype": "mdtext",
+                "min": "",
+                "max": "",
+                "step": "",
+                "ddfile": ""
+            }
         ]
     },
     "headers": {
@@ -330,6 +341,14 @@
             "type": "link"
         },
         {
+            "name": "docs",
+            "onlyloggedin": "False",
+            "text": "Documentation",
+            "link": "/docs/",
+            "float": "right",
+            "type": "link"
+        },
+        {
             "name": "settings",
             "onlyloggedin": "False",
             "text": "Settings",
@@ -337,12 +356,5 @@
             "float": "right",
             "type": "link"
         }
-    ],
-    "misc": {
-        "strftime": "%b %-d, %Y, %H:%M %Z",
-        "basecss": "config/common/base.css",
-        "jquery": "/static/jquery/jquery-3.7.0.min.js",
-        "tablesorter": "/static/tablesorter/js/jquery.tablesorter.min.js",
-        "tablesorterwidget": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"
-    }
+    ]
 }}

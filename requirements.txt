@@ -1,3 +1,5 @@
+csscompressor
+django-bootstrap-v5
 django==4.2
 fontawesomefree
-csscompressor
+martor
