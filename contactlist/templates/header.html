@@ -9,35 +9,33 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">{% if fa %}
         <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">{% endif %}{% if jq %}
-        <script type="text/javascript" src="{{ misc.jquery }}"></script>{% endif %}{% if ts %}
+        <script type="text/javascript" src="{{ misc.jqueryurl }}"></script>{% endif %}{% if ts %}
         <link rel="stylesheet" href="{{ styling.tstheme.file }}">
-        <script type="text/javascript" src="{{ misc.tablesorter }}"></script>
-        <script type="text/javascript" src="{{ misc.tablesorterwidget }}"></script>{% endif %}
-        {% load bootstrap5 %}
-        {% bootstrap_css %}
-        {% bootstrap_javascript %}
+        <script type="text/javascript" src="{{ misc.tablesorterurl }}"></script>
+        <script type="text/javascript" src="{{ misc.tablesorterwidgeturl }}"></script>{% endif %}
+        <link href="{{ misc.bootstrapcssurl }}" rel="stylesheet">
         <style>
 {{ styling.css|safe }}
         </style>
     </head>
     <body>
+        <script type="text/javascript" src="{{ misc.bootstrapjsurl }}"></script>
+        <nav class="navbar navbar-expand-{{bsparams.size}}" data-bs-theme="{{bsparams.color}}">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">{% for item in navbar %}
 
-        {% if %}
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                </ul>
+            </div>
+
+        </nav>
 
 
         <div class="navbar">
             <ul>{% for item in navbar %}
                 {% if item.type == "dropdown" %}
-                <li class="dropdown" style="float: {{ item.float }}">
-                    <a href="javascript:void(0)" class="dropbtn">{{ item.text }}</a>
-                    <div class="dropdown-content">{% for option in item.options %}
-                        <a href="{{ option.link }}">{{ option.text. }}</a>
-                    {% endfor %}</div>
-                </li>
                 {% elif item.type == "link" %}
-                <li style="float: {{ item.float }}"><a href={{ item.link }}>{{ item.text }}</a></li>
+
                 {% elif item.type == "logo" %}
-                <li style="float: {{ item.float }}"><img src={{ theme.logo }} width="48" height="48"></li>
+
         {% endif %}{% endfor %}</ul>
         </div>

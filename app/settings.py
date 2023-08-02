@@ -2,7 +2,7 @@
 # File: settings.py
 # Purpose: Django manage.py
 # Created: June 7, 2023
-# Modified: July 31, 2023
+# Modified: August 1, 2023
 
 """
 Django settings for contactlist project.
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap5', # External module
     'fontawesomefree', # External module
     'martor', # External module
     'contactlist', # Local Directory

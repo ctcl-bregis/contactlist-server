@@ -3,9 +3,11 @@
         "strftime": "%b %-d, %Y, %H:%M %Z",
         "logotext": "ContactList",
         "basecss": "config/common/base.css",
-        "jquery": "/static/jquery/jquery-3.7.0.min.js",
-        "tablesorter": "/static/tablesorter/js/jquery.tablesorter.min.js",
-        "tablesorterwidget": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"
+        "bootstrapcssurl": "/static/bootstrap/css/bootstrap.min.css",
+        "bootstrapjsurl": "/static/bootstrap/js/bootstrap.min.js",
+        "jqueryurl": "/static/jquery/jquery-3.7.0.min.js",
+        "tablesorterurl": "/static/tablesorter/js/jquery.tablesorter.min.js",
+        "tablesorterwidgeturl": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"
     },
     "tablecats": {
         "personal": "Personal Information",

@@ -1,4 +1,5 @@
 ## 0.6.0 - [UNRELEASED] - Media Update
+So far this is the largest update yet.
 
 Additions:
 

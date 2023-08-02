@@ -1,6 +1,8 @@
 # ContactList - CTCL 2023
-# Date: May 4, 2023 (Reused from CAMS) - July 2, 2023
+# File: lib.py
 # Purpose: Commonly used functions, similar to lib.rs in Rust
+# Created: June 7, 2023
+# Modified: August 1, 2023
 
 from datetime import datetime, timezone
 import json, base64
@@ -40,18 +42,35 @@ def dt2fmt(dt):
 # "Human size" data size formatting
 def hsize(fsize):
     suffix = "Bytes"
-    
+
     for unit in [" ", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
         if abs(fsize) < 1024.0:
             return f"{fsize:3.0f}{unit}{suffix}"
         fsize /= 1024.0
-        
+
     return f"{num:.1f}Yi{suffix}"
+
+if exists("themecfg.json"):
+    with open("themecfg.json") as f:
+        themes = json.loads(f.read())
+else:
+    printe("lib.py ERROR: themecfg.json does not exist, it may not have been generated yet")
+    themes = {}
+
+# Return theme data
+def theme(tname):
+    try:
+        return themes[tname]
+    except KeyError:
+        printe(f"lib.py WARNING: Theme \"{tname}\" not found, using default")
+        return themes["default"]
 
 # Function to prefill context data to make views smaller
 def mkcontext(request, title, scripts="none"):
-    context = {"title": title, "styling": theme(request.COOKIES.get("theme")), "misc": getconfig("misc"), "navbar": getconfig("navbar"), "ver": __version__}
-    
+    themecookie = theme(request.COOKIES.get("theme"))
+
+    context = {"title": title, "styling": themecookie, "bsparams": themecookie["bootstrap"], "misc": getconfig("misc"), "navbar": getconfig("navbar"), "ver": __version__}
+
     # font - Load just fontawesome
     # form - Load JQuery and Select2
     # table - Load JQuery, fontawesome and tablesorter
@@ -75,21 +94,6 @@ def mkcontext(request, title, scripts="none"):
         context["jq"] = False
         context["ts"] = False
         context["s2"] = False
-    
+
     return context
 
-if exists("themecfg.json"):
-    with open("themecfg.json") as f:
-        themes = json.loads(f.read())
-else:
-    printe("lib.py ERROR: themecfg.json does not exist, it may not have been generated yet")
-    themes = {}
-
-# Return theme data
-def theme(tname):    
-    try:
-        return themes[tname]
-    except KeyError:
-        printe(f"lib.py WARNING: Theme \"{tname}\" not found, using default")
-        return themes["default"]
-        
