@@ -1,8 +1,8 @@
 # ContactList - CTCL 2023
-# File: genmodels.py
+# File: build.py
 # Purpose: Management command for generating database models, form data and other files
 # Created: June 9, 2023
-# Modified: August 1, 2023
+# Modified: August 4, 2023
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -12,9 +12,10 @@
 # - mdtext: Same as text, but uses the martor editor
 
 from django.core.management.base import BaseCommand, CommandError
-import os, json, shutil
+import os, json, shutil, platform
 from datetime import datetime, timezone
 from csscompressor import compress
+from scss import Compiler
 
 def configchoices(jsonconfig, themes):
     choicedict = jsonconfig["dropdown"]
@@ -162,27 +163,6 @@ class SearchForm(forms.Form):
 
     return fieldspy
 
-def loadthemedata(themeindices, basecss):
-    themes = {}
-    for theme in themeindices:
-        themedir = os.path.join("config/themes", theme["int_name"])
-        themeind = os.path.join(themedir, "index.json")
-
-        if os.path.exists(themeind):
-            try:
-                with open(theme["css"]) as f:
-                    theme["css"] = compress(basecss + f.read())
-                    themes[theme["int_name"]] = theme
-            except KeyError as err:
-                print(f"genmodels.py theme loader WARNING: Key \"{err}\" did not exist in the index for the theme \"{theme['int_name']}\". The theme would not be available.")
-            except FileNotFoundError as err:
-                print(f"genmodels.py WARNING: File {theme['css']} does not exist on the system. The theme \"{theme['int_name']}\" would not be available.")
-        else:
-            print(f"genmodels.py theme loader WARNING: Theme directory \"{themedir}\" does not have an index.json. The theme \"{theme['int_name']}\" would not be available.")
-
-    return themes
-
-
 class Command(BaseCommand):
     help = "Generates a model.py for the application using config files under config/database/"
 
@@ -200,32 +180,47 @@ class Command(BaseCommand):
                 jsonconfig = json.loads(f.read())["config"]
         except FileNotFoundError:
             cwd = os.getcwd()
-            print(f"genmodels.py ERROR: config/config.json does not exist. Current working directory is \"{cwd}\".")
+            print(f"build.py ERROR: config/config.json does not exist. Current working directory is \"{cwd}\".")
             return
         except (json.JSONDecodeError, json.decoder.JSONDecodeError) as e:
-            print(f"genmodels.py ERROR: Exception \"{e}\" raised by JSON library")
+            print(f"build.py ERROR: Exception \"{e}\" raised by JSON library")
             return
 
         themedir = [f for f in os.listdir("config/themes") if os.path.isdir(os.path.join("config/themes", f))]
-        themeindices = []
+        themelist = []
         for i in themedir:
             try:
                 with open(f"config/themes/{i}/index.json") as f:
                     themedata = dict(json.load(f))["theme"]
             except FileNotFoundError:
-                print(f"genmodels.py theme loader WARNING: Theme \"{i}\" does not have a index.json, the theme would not be available")
+                print(f"build.py theme loader WARNING: Theme \"{i}\" does not have a index.json, the theme would not be available")
             except (json.JSONDecodeError, json.decoder.JSONDecodeError) as e:
-                print(f"genmodels.py theme loader WARNING: Exception \"{e}\" raised by JSON library, the theme would not be available")
+                print(f"build.py theme loader WARNING: Exception \"{e}\" raised by JSON library, the theme would not be available")
 
-            themeindices.append(themedata)
+            themelist.append(themedata)
 
-        with open(jsonconfig["misc"]["basecss"]) as f:
+        with open(jsonconfig["misc"]["basescss"]) as f:
             basecss = f.read()
+            Compiler().compile_string(basecss)
 
-        themes = loadthemedata(themeindices, basecss)
+        themes = {}
+        for theme in themelist:
+            themedir = os.path.join("config/themes", theme["int_name"])
+            themeind = os.path.join(themedir, "index.json")
+
+            with open(themeind) as f:
+                themescss = json.loads(f.read())["theme"]["scss"]
+            
+            with open(themescss) as f:
+                themescss = f.read()
+                
+            themecss = basecss + Compiler().compile_string(themescss)
+            theme["css"] = compress(themecss)
+
+            themes[theme["int_name"]] = theme
 
         if len(themes) < 1:
-            print(f"genmodels.py theme loader ERROR: No themes were defined, themecfg.json may be empty")
+            print(f"build.py theme loader ERROR: No themes were defined, themecfg.json may be empty")
 
         with open("themecfg.json", "w") as f:
             f.write(json.dumps(themes))

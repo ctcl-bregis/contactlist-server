@@ -2,7 +2,7 @@
 # File: settings.py
 # Purpose: Django manage.py
 # Created: June 7, 2023
-# Modified: August 1, 2023
+# Modified: August 3, 2023
 
 """
 Django settings for contactlist project.

@@ -2,7 +2,7 @@
     "disp_name": "Flat Dark - Default",
     "int_name": "default",
     "logo": "",
-    "css": "config/themes/default/styling.css",
+    "scss": "config/themes/default/styling.scss",
     "tstheme": {"file": "/static/tablesorter/css/theme.dark.min.css", "name": "dark"},
     "bootstrap": {
         "size": "lg",

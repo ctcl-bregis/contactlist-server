@@ -1,4 +1,5 @@
 csscompressor
 django==4.2
+pyscss
 fontawesomefree
 martor

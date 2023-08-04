@@ -18,24 +18,20 @@
 {{ styling.css|safe }}
         </style>
     </head>
-    <body>
+    <body data-bs-theme={{ bsparams.theme }}>
         <script type="text/javascript" src="{{ misc.bootstrapjsurl }}"></script>
-        <nav class="navbar navbar-expand-{{bsparams.size}}" data-bs-theme="{{bsparams.color}}">
+        <nav class="navbar navbar-expand-{{bsparams.size}}">
             <div class="container-fluid">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">{% for item in navbar %}
-
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">{% for item in navbar %}{% if item.type == "link" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ item.link }}">{{ item.text }}</a>
+                        </li>
+                        {% elif item.type == "dropdown" %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ item.text }}</a>
+                        </li>{% endif %}{% endfor %}
+                    </ul>
+                </div>
             </div>
-
         </nav>
-
-
-        <div class="navbar">
-            <ul>{% for item in navbar %}
-                {% if item.type == "dropdown" %}
-                {% elif item.type == "link" %}
-
-                {% elif item.type == "logo" %}
-
-        {% endif %}{% endfor %}</ul>
-        </div>

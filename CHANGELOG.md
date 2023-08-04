@@ -1,14 +1,17 @@
 ## 0.6.0 - [UNRELEASED] - Media Update
-So far this is the largest update yet.
+So far this is the largest update yet by code size.
 
 Additions:
 
 - Addition of martor for markdown editor fields, along with the new datatype "mdtext"
-- Copied the Integrated Documentation feature of CAMS into ContactList
+- Added the Integrated Documentation feature of CAMS into ContactList
+- Added Sass for styling due to its use with Bootstrap
 
 Changes:
 
-- Site themes are now Bootstrap with custom colors, this resulted in a rewrite of the themes, how themes are handled and theme CSS
+- Management command genmodels.py renamed to build.py to better describe its function
+- Action buttons are now within a single table cell instead of each button having it's own cell, this change is reflected in config.json
+- Site themes are now Bootstrap with custom colors, this resulted in a rewrite of the themes and how themes are handled
 - Indentation fixes in config.json
 
 ## 0.5.2 - July 18, 2023 - Mobile-Friendy Update

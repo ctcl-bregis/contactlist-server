@@ -171,3 +171,5 @@ fields.py
 models.py
 themecfg.json
 
+# CSS files should only be the result of SCSS compilation
+*.css

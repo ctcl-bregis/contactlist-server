@@ -2,7 +2,7 @@
 # File: lib.py
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 # Created: June 7, 2023
-# Modified: August 1, 2023
+# Modified: August 3, 2023
 
 from datetime import datetime, timezone
 import json, base64
@@ -66,7 +66,7 @@ def theme(tname):
         return themes["default"]
 
 # Function to prefill context data to make views smaller
-def mkcontext(request, title, scripts="none"):
+def mkcontext(request, title, scripts=""):
     themecookie = theme(request.COOKIES.get("theme"))
 
     context = {"title": title, "styling": themecookie, "bsparams": themecookie["bootstrap"], "misc": getconfig("misc"), "navbar": getconfig("navbar"), "ver": __version__}
