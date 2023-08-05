@@ -1,6 +1,8 @@
 # ContactList - CTCL 2023
-# Date: June 9, 2023 - July 18, 2023
-# Purpose: Main application views
+# File: contactlist/views.py
+# Purpose: Main application views 
+# Created: June 9, 2023
+# Modified: August 5, 2023
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -84,11 +86,16 @@ def view(request, inid):
     data.pop("tcrd")
     data.pop("tmod")
     for field in data.keys():
+        # Replace the dropdown value with the associated name
         if cfgdata[field]["datatype"] == "select":
             getchoices = allchoices[cfgdata[field]["ddfile"]]
             for k, v in getchoices.items():
                 if data[field] == k:
                     data[field] = v
+        # Render any Markdown text
+        elif cfgdata[field]["datatype"] == "mdtext":
+            # TODO
+            pass
  
     return HttpResponse(template.render(context, request))
 

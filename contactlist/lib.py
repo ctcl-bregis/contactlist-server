@@ -2,7 +2,7 @@
 # File: lib.py
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 # Created: June 7, 2023
-# Modified: August 3, 2023
+# Modified: August 5, 2023
 
 from datetime import datetime, timezone
 import json, base64
@@ -24,7 +24,7 @@ try:
 except (json.JSONDecodeError, json.decoder.JSONDecodeError) as e:
     printe(f"lib.py ERROR: Exception \"{e}\" raised by JSON library")
 
-# Get a specific part/key of the config
+# Get a specific config key
 def getconfig(part):
     try:
         return jsondata[part]
@@ -34,7 +34,6 @@ def getconfig(part):
 
 # Timestamp to formatted date
 def dt2fmt(dt):
-    # TODO: have strfstr read from a config file
     strfstr = getconfig("misc")["strftime"]
 
     return dt.strftime(strfstr)
