@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Management command for generating database models, form data and other files
 # Created: June 9, 2023
-# Modified: August 4, 2023
+# Modified: August 8, 2023
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -60,7 +60,8 @@ def configmodels(jsonconfig):
             elif dt == "text":
                 table += f"    {y['col']} = models.TextField(blank = True, null = True)\n    {y['col']}.group = \"{x}\"\n"
             elif dt == "mdtext":
-                table += f"    {y['col']} = MartorField(blank = True, null = True)\n    {y['col']}.group = \"{x}\"\n"
+                #table += f"    {y['col']} = \n"
+                pass
             elif dt == "date":
                 table += f"    {y['col']} = models.DateField(null = True)\n    {y['col']}.group = \"{x}\"\n"
             else:
@@ -210,10 +211,10 @@ class Command(BaseCommand):
 
             with open(themeind) as f:
                 themescss = json.loads(f.read())["theme"]["scss"]
-            
+
             with open(themescss) as f:
                 themescss = f.read()
-                
+
             themecss = basecss + Compiler().compile_string(themescss)
             theme["css"] = compress(themecss)
 

@@ -5,7 +5,6 @@
     "scss": "config/themes/default/styling.scss",
     "tstheme": {"file": "/static/tablesorter/css/theme.dark.min.css", "name": "dark"},
     "bootstrap": {
-        "size": "lg",
         "theme": "dark"
     }
 }}

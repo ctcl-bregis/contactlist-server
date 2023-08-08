@@ -17,19 +17,32 @@
 {{ styling.css|safe }}
         </style>
     </head>
-    <body>
-        <div class="navbar">
-            <ul>{% for item in navbar %}
-                {% if item.type == "dropdown" %}
-                <li class="dropdown" style="float: {{ item.float }}">
-                    <a href="javascript:void(0)" class="dropbtn">{{ item.text }}</a>
-                    <div class="dropdown-content">{% for option in item.options %}
-                        <a href="{{ option.link }}">{{ option.text. }}</a>
-                    {% endfor %}</div>
-                </li>
-                {% elif item.type == "link" %}
-                <li style="float: {{ item.float }}"><a href={{ item.link }}>{{ item.text }}</a></li>
-                {% elif item.type == "logo" %}
-                <li style="float: {{ item.float }}"><img src={{ theme.logo }} width="48" height="48"></li>
-        {% endif %}{% endfor %}</ul>
-        </div>
+    <body data-bs-theme={{ bsparams.theme }}>
+        <script type="text/javascript" src="{{ misc.bootstrapjsurl }}"></script>
+        <nav class="navbar navbar-expand-{{bsparams.size}} bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-lg-0">{% for item in navbar %}{% if item.type == "link" %}{% if item.float == "left" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ item.link }}">{{ item.text }}</a>
+                        </li>
+                        {% elif item.type == "dropdown" %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ item.text }}</a>
+                        </li>{% endif %}{% endif %}{% endfor %}
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-lg-0">{% for item in navbar %}{% if item.type == "link" %}{% if item.float == "right" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ item.link }}">{{ item.text }}</a>
+                        </li>
+                        {% elif item.type == "dropdown" %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ item.text }}</a>
+                        </li>{% endif %}{% endif %}{% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </nav>

@@ -1,8 +1,8 @@
 # ContactList - CTCL 2023
 # File: contactlist/views.py
-# Purpose: Main application views 
+# Purpose: Main application views
 # Created: June 9, 2023
-# Modified: August 5, 2023
+# Modified: August 7, 2023
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -23,7 +23,7 @@ try:
     from .fields import ContactForm, SettingsForm, SearchForm
 except ModuleNotFoundError:
     pass
-    
+
 try:
     from .choices import Choices
 except ModuleNotFoundError:
@@ -33,12 +33,12 @@ except ModuleNotFoundError:
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
-    
+
 # "Main" page that currently lists everything
 def index(request):
     template = loader.get_template("main.html")
     headers = lib.getconfig("headers")
-    
+
     # htmltable in the config should not contain titles, so add them from headers
     columns = []
     for i in lib.getconfig("htmltable"):
@@ -46,18 +46,18 @@ def index(request):
             i["title"] = headers[i["col"]]
         elif i["type"] == "button":
             i["title"] = ""
-            
+
         columns.append(i)
-    
+
     allitems = [i.todict() for i in ContactItem.objects.all()]
-    
+
     tmplst = []
     for i in allitems:
         i["tcrd"] = lib.dt2fmt(i["tcrd"])
         i["tmod"] = lib.dt2fmt(i["tmod"])
         tmplst.append(i)
     allitems = tmplst
-    
+
     context = lib.mkcontext(request, "ContactList - List", "table")
     context["headers"] = columns
     context["data"] = allitems
@@ -67,16 +67,16 @@ def view(request, inid):
     context = lib.mkcontext(request, "ContactList - View")
     template = loader.get_template("view.html")
     cfgdata = ContactItem.cfgdata()
-    
+
     # Get data for the specific item by the database ID
     dbitem = ContactItem.objects.get(pk=inid)
     data = dbitem.todict()
     # Remove database ID
     data.pop("inid")
-    
-    headers = lib.getconfig("headers")    
+
+    headers = lib.getconfig("headers")
     context["headers"] = headers
-    
+
     # Data dictionary, now without the database ID
     context["data"] = data
 
@@ -96,7 +96,7 @@ def view(request, inid):
         elif cfgdata[field]["datatype"] == "mdtext":
             # TODO
             pass
- 
+
     return HttpResponse(template.render(context, request))
 
 def new(request):
@@ -107,29 +107,29 @@ def new(request):
             cld = form.cleaned_data
             for k, v in cld.items():
                 setattr(newentry, k, v)
-            
+
             dt = datetime.now()
             setattr(newentry, "tcrd", dt)
             setattr(newentry, "tmod", dt)
             newentry.save()
-            
+
             return HttpResponseRedirect("/")
         else:
             return HttpResponseRedirect("/")
-    else:    
+    else:
         form = ContactForm()
-        
+
         tableconfig = lib.getconfig("table")
-        
+
         context = lib.mkcontext(request, "ContactList - New", "form")
         context["form"] = form
         context["groups"] = lib.getconfig("tablecats")
         context["groupnames"] = lib.getconfig("tablecats").keys()
-        
+
         context["groupednames"] = {}
         for x in tableconfig.keys():
             context["groupednames"][x] = [i["col"] for i in tableconfig[x]]
-    
+
         return render(request, "new.html", context)
 
 def edit(request, inid):
@@ -147,19 +147,19 @@ def edit(request, inid):
     else:
         data = ContactItem.objects.get(pk=inid)
         form = ContactForm(initial = data.todict())
-        
+
         tableconfig = lib.getconfig("table")
-        
+
         context = lib.mkcontext(request, "ContactList - Edit", "form")
         context["form"] = form
         context["groups"] = lib.getconfig("tablecats")
         context["groupnames"] = lib.getconfig("tablecats").keys()
         context["inid"] = inid
-        
+
         context["groupednames"] = {}
         for x in tableconfig.keys():
             context["groupednames"][x] = [i["col"] for i in tableconfig[x]]
-        
+
         return render(request, "edit.html", context)
 
 def delete(request, inid):
@@ -171,14 +171,14 @@ def delete(request, inid):
         return HttpResponseRedirect("/")
     else:
         return render(request, "delconfirm.html", lib.mkcontext(request, "ContactList - Delete Item"))
-    
+
 def search(request):
     if request.method == "POST":
         form = SearchForm(request.POST)
         if form.is_valid():
             context = lib.mkcontext(request, "ContactList - Search", "table")
             searchquery = form.cleaned_data["query"]
-            
+
             # Quick hack until Haystack or something is implemented
             fields = [f for f in ContactItem._meta.fields if isinstance(f, CharField) or isinstance(f, TextField)]
             # "icontains" may not function correctly with SQLite3, see Django documentation for details
@@ -186,9 +186,9 @@ def search(request):
             qs = Q()
             for query in queries:
                 qs = qs | query
-            
+
             allitems = [i.todict() for i in ContactItem.objects.filter(qs)]
-            
+
             headers = lib.getconfig("headers")
             columns = []
             for i in lib.getconfig("htmltable"):
@@ -196,29 +196,29 @@ def search(request):
                     i["title"] = headers[i["col"]]
                 elif i["type"] == "button":
                     i["title"] = ""
-            
+
                 columns.append(i)
-            
+
             tmplst = []
             for i in allitems:
                 i["tcrd"] = lib.dt2fmt(i["tcrd"])
                 i["tmod"] = lib.dt2fmt(i["tmod"])
                 tmplst.append(i)
             allitems = tmplst
-    
+
             context = lib.mkcontext(request, "ContactList - List", "table")
             context["headers"] = columns
             context["data"] = allitems
-            
+
             return render(request, "results.html", context)
         else:
             return HttpResponseRedirect("/")
     else:
         context = lib.mkcontext(request, "ContactList - Search")
         context["form"] = SearchForm()
-        
+
         return render(request, "search.html", context)
-    
+
 def settings(request):
     if request.method == "POST":
         form = SettingsForm(request.POST)
@@ -230,29 +230,29 @@ def settings(request):
             return HttpResponseRedirect("/")
     else:
         form = SettingsForm()
-        
+
         context = lib.mkcontext(request, "ContactList - Settings")
         context["form"] = SettingsForm()
         return render(request, "settings.html", context)
-        
+
 def exportcsv(request):
     allitems = [i.todict() for i in ContactItem.objects.all()]
     fields = ContactItem.fieldnames()
-    
+
     for i in allitems:
         for x in fields:
             # Format any datetime objects as they would be shown on the HTML table
             if isinstance(i[x], datetime):
                 i[x] = lib.dt2fmt(i[x])
-    
+
     # Create "file" in memory for DictWriter so it is not written to disk
     memcsv = io.StringIO()
     writer = csv.DictWriter(memcsv, fieldnames = fields, delimiter = ",", quoting = csv.QUOTE_ALL)
     writer.writeheader()
     writer.writerows(allitems)
-    
+
     response = HttpResponse()
     response['Content-Disposition'] = "attachment;filename=export.csv"
     response.write(memcsv.getvalue())
-    
+
     return response

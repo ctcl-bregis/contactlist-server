@@ -1,10 +1,9 @@
 {% include "header.html" %}
         <script>
             $(function() {
-                $("#maintable").tablesorter({ 
+                $("#maintable").tablesorter({
                     theme : "{{ styling.tstheme.name }}"
                 });
-                
             });
         </script>
         <table id="maintable" class="tablesorter">
