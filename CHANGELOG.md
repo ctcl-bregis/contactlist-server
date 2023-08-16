@@ -1,4 +1,4 @@
-## 0.6.0 - [UNRELEASED] - CAMS Update
+## 1.0.0 - [UNRELEASED] - Production Update
 So far this is the largest update yet by code size.
 
 Additions:
