@@ -2,7 +2,7 @@
 # File: contactlist/views.py
 # Purpose: Main application views
 # Created: June 9, 2023
-# Modified: August 7, 2023
+# Modified: August 15, 2023
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -59,7 +59,7 @@ def index(request):
     allitems = tmplst
 
     context = lib.mkcontext(request, "ContactList - List", "table")
-    context["headers"] = columns
+    context["tablecfg"] = columns
     context["data"] = allitems
     return HttpResponse(template.render(context, request))
 
@@ -245,7 +245,8 @@ def exportcsv(request):
             if isinstance(i[x], datetime):
                 i[x] = lib.dt2fmt(i[x])
 
-    # Create "file" in memory for DictWriter so it is not written to disk
+    # The exported CSV file does not need to be written to disk on the server every time
+    # Create "file" in memory for DictWriter
     memcsv = io.StringIO()
     writer = csv.DictWriter(memcsv, fieldnames = fields, delimiter = ",", quoting = csv.QUOTE_ALL)
     writer.writeheader()

@@ -2,7 +2,7 @@
 # File: settings.py
 # Purpose: Django manage.py
 # Created: June 7, 2023
-# Modified: August 8, 2023
+# Modified: August 10, 2023
 
 """
 Django settings for contactlist project.
@@ -47,10 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_static_jquery', # External module
     'fontawesomefree', # External module
+    'bootstrap', # External module
+    'markdownx', # External module
     'contactlist', # Local Directory
     'docs', # Local directory
-    'django_static_jquery',
 ]
 
 MIDDLEWARE = [
@@ -125,8 +127,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = 'static/'
+STATIC_ROOT = ''
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ('static',)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

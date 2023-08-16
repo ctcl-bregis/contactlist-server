@@ -1,18 +1,21 @@
-## 0.6.0 - [UNRELEASED] - Media Update
+## 0.6.0 - [UNRELEASED] - CAMS Update
 So far this is the largest update yet by code size.
 
 Additions:
 
-- Addition of martor for markdown editor fields, along with the new datatype "mdtext"
-- Added the Integrated Documentation feature of CAMS into ContactList
 - Added Sass for styling due to its use with Bootstrap
+- Added the Integrated Documentation feature of CAMS into ContactList
+- Addition of markdown editor fields, along with the new datatype "mdtext"
 
 Changes:
 
-- Management command genmodels.py renamed to build.py to better describe its function
 - Action buttons are now within a single table cell instead of each button having it's own cell, this change is reflected in config.json
-- Site themes are now Bootstrap with custom colors, this resulted in a rewrite of the themes and how themes are handled
+- Automatic setting of the "theme" cookie to the default Flat Dark theme to avoid having "lib.py WARNING: Theme "None" not found, using default" being printed every time a page is loaded when there is no theme cookie set.
 - Indentation fixes in config.json
+- Management command genmodels.py renamed to build.py to better describe its function
+- Optimizations
+- Split table data for the ContactItem into its own file and directory. Though not having any benefit for ContactList other than customizability, this change would simplify reusing ContactList's codebase for CAMS. The management command "build.py" was completely rewritten for this change.
+- Total rewrite of themes with the introduction of Bootstrap
 
 ## 0.5.2 - July 18, 2023 - Mobile-Friendy Update
 
@@ -42,8 +45,8 @@ Additions:
 
 Changes:
 - The navigation bar no longer has a separate configuration file and is now part of config.json
-- choices.py now consists of a single dictionary definition instead of a list of tuples for each dropdown field
-- Dropdown choices in config.json are now stored in a dictionary instead of a list of lists 
+- choices.py now consists of a single dictionary definition instead of a list of tuples for each dropdown fieldcontactlist/management/commands/build.py
+- Dropdown choices in config.json are now stored in a dictionary instead of a list of lists
 
 Fixes:
 
@@ -77,7 +80,7 @@ Fixes:
 
 ## 0.4.0 - June 28, 2023 - Sorting Update
 
-Added: 
+Added:
 
 - Added [tablesorter](https://mottie.github.io/tablesorter/) along with JQuery for the main page table, allowing fields to be sorted
 - Confirmation for deleting items
@@ -85,7 +88,7 @@ Added:
 
 Fixes:
 
-- Added mkcontext to lib.py for pre-filling the dictionary passed as the context for templates. This can make debugging code easier. 
+- Added mkcontext to lib.py for pre-filling the dictionary passed as the context for templates. This can make debugging code easier.
 
 ## 0.3.0 - June 23, 2023 - Font Awesome update
 

@@ -8,18 +8,24 @@
         </script>
         <table id="maintable" class="tablesorter">
             <thead>
-                <tr>{% for header in headers %}{% if header.type == "button" %}
+                <tr>{% for header in tablecfg %}{% if header.type == "buttons" %}
                     <th style="width: {{ header.width }}%;" data-sorter="false">{{ header.title }}</th>{% else %}
                     <th style="width: {{ header.width }}%;">{{ header.title }}</th>{% endif %}{% endfor %}
                 </tr>
             </thead>
             <tbody>
-                {% for r in data %}<tr>{% for h in headers %}{% if h.type == "info" %}
-                    <td>{{ r|get_item:h.col }}</td>{% elif h.type == "button" %}{% if h.link != "" %}{% if h.icon != "" %}
-                    <td class="actbutton"><a href="{{ h.link }}/{{ r.inid }}/"><button><span class="{{ h.icon }}" title="{{ h.text }}"></span></button></a></td>{% else %}
-                    <td class="actbutton"><a href="{{ h.link }}/{{ r.inid }}/"><button>{{ h.text }}</button></a></td>{% endif %}{% else %}
-                    <td></td>{% endif %}{% else %}
-                    <td></td>{% endif %}{% endfor %}
+                {% for r in data %}<tr>{% for h in tablecfg %}{% if h.type == "info" %}
+                    <td>{{ r|get_item:h.col }}</td>
+                    {% elif h.type == "buttons" %}
+                    <td>
+                        {% for button in h.buttons %}
+                        <a href="{{ button.link }}/{{ r.inid }}/"><button type="button" class="btn-htmltable btn btn-primary"><span class="{{ button.icon }}" title="{{ button.text }}"></span></button></a>
+                        {% endfor %}
+                    </td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
+                    {% endfor %}
                 </tr>{% endfor %}
             </tbody>
         </table>

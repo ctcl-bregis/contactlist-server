@@ -1,8 +1,8 @@
 # ContactList - CTCL 2023
 # File: views.py
 # Purpose: Integrated Documentation Views
-# Created: July 31, 2023 (copied from CAMS)
-# Modified: July 31, 2023
+# Created: July 31, 2023
+# Modified: August 12, 2023
 
 import csv
 import io
@@ -119,7 +119,7 @@ def docs(request, path = ""):
             return HttpResponseNotFound()
 
         # Remove prefix
-        dlink = dlink.replace("/docs", "")
+        dlink = dlink.replace("/docs/", "/")
         context = mkcontext(request, f"Documentation - {dlink}")
         filetype = getfiledata(path)["rtype"]
 

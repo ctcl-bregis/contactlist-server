@@ -7,19 +7,17 @@
         <meta name="generator" content="ContactList {{ ver }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">{% if fa %}
-        <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">{% endif %}{% if jq %}
-        <script type="text/javascript" src="{{ misc.jqueryurl }}"></script>{% endif %}{% if ts %}
-        <link rel="stylesheet" href="{{ styling.tstheme.file }}">
-        <script type="text/javascript" src="{{ misc.tablesorterurl }}"></script>
-        <script type="text/javascript" src="{{ misc.tablesorterwidgeturl }}"></script>{% endif %}
-        <link href="{{ misc.bootstrapcssurl }}" rel="stylesheet">
+        <link href="{% static misc.facssurl %}" rel="stylesheet" type="text/css">{% endif %}{% if jq %}
+        <script type="text/javascript" src="{% static misc.jqurl %}"></script>{% endif %}{% if ts %}
+        <link rel="stylesheet" href="{% static styling.tstheme.file %}">
+        <script type="text/javascript" src="{% static misc.tsurl %}"></script>{% endif %}
+        <link href="{% static misc.bscssurl %}" rel="stylesheet">
         <style>
 {{ styling.css|safe }}
         </style>
     </head>
     <body data-bs-theme={{ bsparams.theme }}>
-        <script type="text/javascript" src="{{ misc.bootstrapjsurl }}"></script>
+        <script type="text/javascript" src="{% static misc.bsjsurl %}"></script>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
