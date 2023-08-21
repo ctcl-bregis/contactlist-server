@@ -2,7 +2,7 @@
 # File: views.py
 # Purpose: Integrated Documentation Views
 # Created: July 31, 2023
-# Modified: August 12, 2023
+# Modified: August 18, 2023
 
 import csv
 import io
@@ -17,8 +17,8 @@ from django.template import loader
 from django.template.defaulttags import register
 from contactlist.lib import getconfig, hsize, mkcontext, printe
 
-# Get string from the configuration file to format time with
-strfstr = getconfig("misc")["strftime"]
+# String from the config file to use with strftime
+strfstr = getconfig("global")["strftime"]
 
 # Assign the config dictionary to a variable so getconfig() does not have to be called every time
 docsconfig = getconfig("docs")
@@ -70,14 +70,12 @@ def getfiledata(path):
         else:
             filedata["rtype"] = None
 
-        if filedata["rtype"] == "binary":
-            filedata["dlink"] = None
-            filedata["fsize"] = os.path.getsize(path)
-        elif filedata["rtype"] in ["markdown", "source", "text"]:
+        if filedata["rtype"] in ["markdown", "source", "text"]:
             filedata["dlink"] = path.replace(filepath, urlprefix)
             filedata["fsize"] = os.path.getsize(path)
         else:
             filedata["dlink"] = None
+            # Still get the file size
             filedata["fsize"] = os.path.getsize(path)
 
     else:

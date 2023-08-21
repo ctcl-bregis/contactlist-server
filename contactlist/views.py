@@ -2,7 +2,7 @@
 # File: contactlist/views.py
 # Purpose: Main application views
 # Created: June 9, 2023
-# Modified: August 15, 2023
+# Modified: August 18, 2023
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -14,6 +14,7 @@ from . import lib
 from .lib import printe
 import csv, io
 
+# For some reason, this file is ran by Django before the "build" management command finishes
 try:
     from .models import ContactItem
 except ModuleNotFoundError:
@@ -134,8 +135,8 @@ def new(request):
 
 def edit(request, inid):
     if request.method == "POST":
-        data = ContactItem.objects.get(pk=inid)
-        form = ContactForm(request.POST, instance=data)
+        data = ContactItem.objects.get(pk = inid)
+        form = ContactForm(request.POST, instance = data)
         if form.is_valid():
             form.save()
             data = ContactItem.objects.get(pk=inid)
@@ -166,7 +167,7 @@ def delete(request, inid):
     # The button for continuing with deletion would be a form that does not include data
     # This also allows for the deletion of an item by sending a POST request
     if request.method == "POST":
-        dbitem = ContactItem.objects.get(inid=inid)
+        dbitem = ContactItem.objects.get(inid = inid)
         dbitem.delete()
         return HttpResponseRedirect("/")
     else:

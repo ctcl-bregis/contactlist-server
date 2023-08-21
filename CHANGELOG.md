@@ -6,6 +6,8 @@ Additions:
 - Added Sass for styling due to its use with Bootstrap
 - Added the Integrated Documentation feature of CAMS into ContactList
 - Addition of markdown editor fields, along with the new datatype "mdtext"
+- Addition of CardDAV sync support
+- Multiple database table support though unused by ContactList. This resulted in the rewrite of the build.py management command
 
 Changes:
 
@@ -13,8 +15,7 @@ Changes:
 - Automatic setting of the "theme" cookie to the default Flat Dark theme to avoid having "lib.py WARNING: Theme "None" not found, using default" being printed every time a page is loaded when there is no theme cookie set.
 - Indentation fixes in config.json
 - Management command genmodels.py renamed to build.py to better describe its function
-- Optimizations
-- Split table data for the ContactItem into its own file and directory. Though not having any benefit for ContactList other than customizability, this change would simplify reusing ContactList's codebase for CAMS. The management command "build.py" was completely rewritten for this change.
+- General code optimizations
 - Total rewrite of themes with the introduction of Bootstrap
 
 ## 0.5.2 - July 18, 2023 - Mobile-Friendy Update

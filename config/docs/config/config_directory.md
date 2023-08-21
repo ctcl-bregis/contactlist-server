@@ -32,13 +32,21 @@ Files for django-markdownx and Font Awesome are included as PyPi packages and ar
 #### "global"
 The "global" key stores data that is used by almost every page. It is for configuration that is considered more important than what is under "misc".
 
-Currently, as of 0.6.0, these keys exist under "global":
+Currently, as of 1.0.0, these keys exist under "global":
 
 - "strftime": The string to use for formatting datetime timestamp objects. This string is used wherever a timestamp is displayed to the user.
-- 
 
 #### "tables"
-Files that define what tables are available to the app, 
+The "tables" key is an index of what tables are to be available to the app.
+
+##### "classprefix"
+"classprefix" is the string that is used to define string names.
+
+For contactlist/choices.py, the class name is appended "Choices". For example, if the classprefix is "Contact", the class name would be "ContactChoices"
+
+For contactlist/models.py, the class name is appended "Item". For example, if the classprefix is "Contact", the class name would be "ContactModel"
+
+For contactlist/fields.py, the class name is appended "Field". For example, if the classprefix is "Contact", the class name would be "ContactField"
 
 #### "htmltable"
 "htmltable" is the key for storing what data is shown by the table on the Main page and Search Results page. The key stores a list of dictionaries.
@@ -54,7 +62,7 @@ The specific parameters for a dictionary with the "type" key set to "info" are:
 ### "config/docs/"
 The subdirectory "config/docs/" is for all of the files shown in the Integrated Documentation feature. The Documentation page shows a file browser-like interface with "config/docs/" as the "root" directory.
 
-All files are shown in directory file lists, though supported files or directories are viewable and have a link. Attempts to view a page of a unsupported file would simply return an HTTP 404 error.
+All files are shown in directory file lists, files that are supported for viewing by the application have a link.
 
 Supported file extensions are defined by the "knowntypes" dictionary in the "docs" section of "config/config.json".
 
