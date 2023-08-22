@@ -10,6 +10,8 @@
         "tsurl": "tablesorter/js/jquery.tablesorter.combined.min.js"
     },
     "global": {
+        "appname": "ContactList",
+        "dev": "CTCL 2023",
         "strftime": "%b %-d, %Y, %H:%M %Z"
     },
     "tables": [
