@@ -15,3 +15,6 @@ configthemes is the function used first, it takes in a list of themes and tries 
 configchoices generates the contents of the choices.py file under "contactlist/"
 
 
+### configmodels
+Along with the tables defined by configuration files, some other tables are generated.
+

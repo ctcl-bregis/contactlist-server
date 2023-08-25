@@ -15,7 +15,9 @@
         "strftime": "%b %-d, %Y, %H:%M %Z"
     },
     "tables": [
-        {"classprefix": "Contact", "cfg": "config/tables/contact.json", "important": "True"}
+        {"metaprefix": "MetaContact", "tables": [
+            {"classprefix": "Contact", "cfg": "config/tables/contact.json", "important": "True"}
+        ]}
     ],
     "htmltable": [
         {"type": "info", "db": "ContactItem", "col": "name", "width": "20", "link": "", "icon": "", "text": ""},
