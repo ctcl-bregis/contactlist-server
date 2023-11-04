@@ -1,1 +1,0 @@
-runner_dev is a BASH script intended for use in development environments.
