@@ -1,0 +1,106 @@
+{"config": {
+    "misc": {
+        "logotext": "ContactList",
+        "basescss": "config/themes/base.scss",
+        "facssurl": "/static/fontawesome/css/all.min.css",
+        "fajsurl": "/static/fontawesome/js/all.min.js",
+        "bscssurl":  "/bootstrap/css/bootstrap.min.css",
+        "bsjsurl": "/bootstrap/js/bootstrap.bundle.min.js",
+        "jqurl": "/static/jquery-3.7.1.min.js",
+        "tsurl": "/static/tablesorter/js/jquery.tablesorter.combined.min.js"
+    },
+    "global": {
+        "appname": "ContactList",
+        "dev": "CTCL 2023",
+        "strftime": "%b %-d, %Y, %H:%M %Z"
+    },
+    "table": "config/table.json",
+    "htmltable": [
+        {"type": "info", "db": "ContactItem", "col": "name", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "info", "db": "ContactItem", "col": "irln", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "info", "db": "ContactItem", "col": "tmod", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "info", "db": "ContactItem", "col": "tcrd", "width": "20", "link": "", "icon": "", "text": ""},
+        {"type": "buttons", "width": "20", "buttons": [
+            {"link": "/view", "icon": "fa-solid fa-bars", "text": "View"},
+            {"link": "/edit", "icon": "fa-solid fa-pen-to-square", "text": "Edit"},
+            {"link": "/delete", "icon": "fa-solid fa-xmark", "text": "Delete"}
+        ]}
+    ],
+    "navbar": [
+        {
+            "name": "main",
+            "onlyloggedin": "False",
+            "text": "Main",
+            "link": "/",
+            "float": "left",
+            "type": "link"
+        },
+        {
+            "name": "new",
+            "onlyloggedin": "False",
+            "text": "Add Contact",
+            "link": "/new/",
+            "float": "left",
+            "type": "link"
+        },
+        {
+            "name": "search",
+            "onlyloggedin": "False",
+            "text": "Search",
+            "link": "",
+            "float": "left",
+            "type": "link"
+        },
+        {
+            "name": "docs",
+            "onlyloggedin": "False",
+            "text": "Documentation",
+            "link": "/docs/",
+            "float": "right",
+            "type": "link"
+        },
+        {
+            "name": "settings",
+            "onlyloggedin": "False",
+            "text": "Settings",
+            "link": "/settings/",
+            "float": "right",
+            "type": "link"
+        }
+    ],
+    "docs": {
+        "path": "config/docs/",
+        "showhidden": "True",
+        "usesorter": "False",
+        "knowntypes": {
+            ".json": {"name": "JSON", "type": "source"},
+            ".md": {"name": "Markdown", "type": "markdown"},
+            ".py": {"name": "Python Source", "type": "source"},
+            ".txt": {"name": "Plain Text", "type": "text"},
+            ".zip": {"name": "File Archive", "type": "binary"},
+            "": {"name": "Plain Text", "type": "text"}
+        },
+        "table": [
+            {"title": "Name", "align": "left", "width": "45%", "data": "dname", "islink": "True"},
+            {"title": "Type", "align": "center", "width": "15%", "data": "dtype", "islink": "False"},
+            {"title": "Size", "align": "center", "width": "15%", "data": "fsize", "islink": "False"},
+            {"title": "Modified", "align": "center", "width": "25%", "data": "ftmod", "islink": "False"}
+        ]
+    },
+    "themes" : {
+        "base_scss": "base.scss",
+        "themecfg_path": "mgmt/build/themecfg.json",
+        "themes": [
+            {
+                "disp_name": "Flat Dark - Default",
+                "int_name": "default",
+                "logo": "",
+                "scss": "config/themes/default.scss",
+                "tstheme": {"file": "tablesorter/css/theme.dark.min.css", "name": "dark"},
+                "bootstrap": {
+                    "theme": "dark"
+                }
+            }
+        ]
+    }
+}}
