@@ -2,11 +2,10 @@
 # File: urls.py
 # Purpose: Main application URLs
 # Created: June 9, 2023
-# Modified: November 4, 2023
+# Modified: November 15, 2023
 
 from . import views
-from django.conf.urls import url, include
-from django.urls import path
+from django.urls import include, path
 from markdownx import urls as markdownx
 
 urlpatterns = [

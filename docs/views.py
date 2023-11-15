@@ -2,7 +2,7 @@
 # File: views.py
 # Purpose: Integrated Documentation Views
 # Created: July 31, 2023
-# Modified: August 18, 2023
+# Modified: November 15, 2023
 
 import csv
 import io
@@ -15,13 +15,13 @@ from django.http import (HttpResponse, HttpResponseNotFound, HttpResponseRedirec
 from django.shortcuts import render
 from django.template import loader
 from django.template.defaulttags import register
-from contactlist.lib import getconfig, hsize, mkcontext, printe
+import contactlist.lib as lib
 
 # String from the config file to use with strftime
-strfstr = getconfig("global")["strftime"]
+strfstr = lib.getgconfig("global")["strftime"]
 
-# Assign the config dictionary to a variable so getconfig() does not have to be called every time
-docsconfig = getconfig("docs")
+# Assign the config dictionary to a variable so lib.getgconfig() does not have to be called every time
+docsconfig = lib.getgconfig("docs")
 filepath = docsconfig["path"]
 
 # Hardcoded documentation path
@@ -72,11 +72,10 @@ def getfiledata(path):
 
         if filedata["rtype"] in ["markdown", "source", "text"]:
             filedata["dlink"] = path.replace(filepath, urlprefix)
-            filedata["fsize"] = os.path.getsize(path)
         else:
             filedata["dlink"] = None
-            # Still get the file size
-            filedata["fsize"] = os.path.getsize(path)
+
+        filedata["fsize"] = lib.hsize(os.path.getsize(path))
 
     else:
         printe(f"docs/views.py function getfiledata ERROR: {path} is not a file, not a directory or does not exist")
@@ -101,7 +100,7 @@ def listfiles(path):
 
 # "root" page
 def docs(request, path = ""):
-    context = mkcontext(request, "Documentation")
+    context = lib.mkcontext(request, "Documentation")
     context["dir"] = path
     context["headers"] = docsconfig["table"]
 
@@ -118,7 +117,7 @@ def docs(request, path = ""):
 
         # Remove prefix
         dlink = dlink.replace("/docs/", "/")
-        context = mkcontext(request, f"Documentation - {dlink}")
+        context = lib.mkcontext(request, f"Documentation - {dlink}")
         filetype = getfiledata(path)["rtype"]
 
         # IDEA: Pre-render files and store them in memory on server start so the files are not accessed each time

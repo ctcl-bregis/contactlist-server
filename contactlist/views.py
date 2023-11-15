@@ -2,7 +2,7 @@
 # File: contactlist/views.py
 # Purpose: Main application views
 # Created: June 9, 2023
-# Modified: November 4, 2023
+# Modified: November 15, 2023
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -38,19 +38,19 @@ def get_item(dictionary, key):
 # "Main" page that currently lists everything
 def index(request):
     template = loader.get_template("main.html")
-    headers = lib.getconfig("headers")
+    headers = lib.gettconfig("headers")
 
     # htmltable in the config should not contain titles, so add them from headers
     columns = []
-    for i in lib.getconfig("htmltable"):
-        if i["type"] == "info":
-            i["title"] = headers[i["col"]]
-        elif i["type"] == "button":
-            i["title"] = ""
+    for tableitem in lib.getgconfig("htmltable"):
+        if tableitem["type"] == "info":
+            tableitem["title"] = headers[tableitem["col"]]
+        elif tableitem["type"] == "button":
+            tableitem["title"] = ""
 
-        columns.append(i)
+        columns.append(tableitem)
 
-    allitems = [i.todict() for i in ContactItem.objects.all()]
+    allitems = [item.todict() for item in ContactItem.objects.all()]
 
     tmplst = []
     for i in allitems:
@@ -75,7 +75,7 @@ def view(request, inid):
     # Remove database ID
     data.pop("inid")
 
-    headers = lib.getconfig("headers")
+    headers = lib.gettconfig("headers")
     context["headers"] = headers
 
     # Data dictionary, now without the database ID
@@ -120,12 +120,12 @@ def new(request):
     else:
         form = ContactForm()
 
-        tableconfig = lib.getconfig("table")
+        tableconfig = lib.gettconfig("table")
 
         context = lib.mkcontext(request, "ContactList - New", "form")
         context["form"] = form
-        context["groups"] = lib.getconfig("tablecats")
-        context["groupnames"] = lib.getconfig("tablecats").keys()
+        context["groups"] = lib.gettconfig("tablecats")
+        context["groupnames"] = lib.gettconfig("tablecats").keys()
 
         context["groupednames"] = {}
         for x in tableconfig.keys():
@@ -149,12 +149,12 @@ def edit(request, inid):
         data = ContactItem.objects.get(pk=inid)
         form = ContactForm(initial = data.todict())
 
-        tableconfig = lib.getconfig("table")
+        tableconfig = lib.gettconfig("table")
 
         context = lib.mkcontext(request, "ContactList - Edit", "form")
         context["form"] = form
-        context["groups"] = lib.getconfig("tablecats")
-        context["groupnames"] = lib.getconfig("tablecats").keys()
+        context["groups"] = lib.gettconfig("tablecats")
+        context["groupnames"] = lib.gettconfig("tablecats").keys()
         context["inid"] = inid
 
         context["groupednames"] = {}
@@ -190,9 +190,9 @@ def search(request):
 
             allitems = [i.todict() for i in ContactItem.objects.filter(qs)]
 
-            headers = lib.getconfig("headers")
+            headers = lib.getgconfig("headers")
             columns = []
-            for i in lib.getconfig("htmltable"):
+            for i in lib.getgconfig("htmltable"):
                 if i["type"] == "info":
                     i["title"] = headers[i["col"]]
                 elif i["type"] == "button":

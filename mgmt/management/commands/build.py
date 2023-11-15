@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Management command for generating database models, form data and other files
 # Created: June 9, 2023
-# Modified: November 14, 2023
+# Modified: November 15, 2023
 
 from django.core.management.base import BaseCommand, CommandError
 import os, json, shutil, platform, sys
@@ -27,10 +27,13 @@ def configthemes(basecss, gconfig):
                 themescss = f.read()
 
             try:
-                theme["css"] = Compiler().compile_string(themescss)
+                theme["css"] = compress(Compiler().compile_string(themescss))
             except Exception as err:
                 printe(f"build.py configthemes ERROR: SCSS compilation error when parsing {cfgtheme['scss']}: {err}")
                 theme["css"] = ""
+
+            # Add a comment in between to help differentiate base and theme-specific styling while debugging
+            theme["css"] = "/* base styling */\n" + basecss + "\n/* theme-specific styling */\n" + theme["css"]
         else:
             printe(f"build.py configthemes ERROR: Path {cfgtheme['scss']} does not exist, theme-specific styling may not be available")
             theme["css"] = ""
@@ -112,23 +115,23 @@ def configmodels(gconfig, tconfig):
     dbconfig = []
     table = ""
     cfgdata = {}
-    for x in tconfig["table"].keys():
-        dbconfig = tconfig["table"][x]
-        for y in dbconfig:
-            dt = y["datatype"]
+    for group in tconfig["table"].keys():
+        dbconfig = tconfig["table"][group]
+        for col in dbconfig:
+            dt = col["datatype"]
 
-            cfgdata[y["col"]] = y
+            cfgdata[col["col"]] = col
 
             if dt in "select":
-                table += f"    {y['col']} = models.CharField(blank = True, max_length = 128, choices = Choices.totuplelist(\"{y['ddfile']}\"))\n    {y['col']}.group = \"{x}\"\n"
+                table += f"    {col['col']} = models.CharField(blank = True, max_length = 128, choices = Choices.totuplelist(\"{col['ddfile']}\"))\n    {col['col']}.group = \"{group}\"\n"
             elif dt == "string":
-                table += f"    {y['col']} = models.CharField(blank = True, max_length = {y['max']})\n    {y['col']}.group = \"{x}\"\n"
+                table += f"    {col['col']} = models.CharField(blank = True, max_length = {col['max']})\n    {col['col']}.group = \"{group}\"\n"
             elif dt == "text":
-                table += f"    {y['col']} = models.TextField(blank = True, null = True)\n    {y['col']}.group = \"{x}\"\n"
+                table += f"    {col['col']} = models.TextField(blank = True, null = True)\n    {col['col']}.group = \"{group}\"\n"
             elif dt == "mdtext":
-                table += f"    {y['col']} = models.TextField(blank = True, null = True)\n    {y['col']}.group = \"{x}\"\n"
+                table += f"    {col['col']} = models.TextField(blank = True, null = True)\n    {col['col']}.group = \"{group}\"\n"
             elif dt == "date":
-                table += f"    {y['col']} = models.DateField(null = True)\n    {y['col']}.group = \"{x}\"\n"
+                table += f"    {col['col']} = models.DateField(null = True)\n    {col['col']}.group = \"{group}\"\n"
             else:
                 print(f"WARNING: Unknown datatype \"{dt}\", skipping")
 
@@ -211,6 +214,7 @@ class Command(BaseCommand):
 
             try:
                 basecss = Compiler().compile_string(basescss)
+                basecss = compress(basecss)
             except Exception as err:
                 printe(f"build.py ERROR: SCSS compilation error when parsing {gconfig['misc']['basescss']}: {err}")
         else:

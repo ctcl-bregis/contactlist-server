@@ -2,7 +2,7 @@
 # File: lib.py
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 # Created: June 7, 2023
-# Modified: November 14, 2023
+# Modified: November 15, 2023
 
 from datetime import datetime, timezone
 import json, base64
@@ -27,6 +27,15 @@ if exists("config/config.json"):
 else:
     printe(f"lib.py ERROR: Global configuration at config/config.json does not exist")
 
+if exists(gconfig["table"]):
+    try:
+        with open(gconfig["table"]) as f:
+            tconfig = json.loads(f.read())["table"]
+    except (json.JSONDecodeError, json.decoder.JSONDecodeError) as e:
+        printe(f"lib.py ERROR: Exception \"{e}\" raised by JSON library")
+else:
+    printe(f"lib.py ERROR: Global configuration at {gconfig['table']} does not exist")
+
 if exists(gconfig["themes"]["themecfg_path"]):
     try:
         with open(gconfig["themes"]["themecfg_path"]) as f:
@@ -37,17 +46,26 @@ else:
     printe(f"lib.py ERROR: Theme configuration at {gconfig['themes']['themecfg_path']} does not exist")
 
 
-# Get a specific config key
-def getconfig(part):
+# Get a specific key from the global configuration file
+def getgconfig(part):
     try:
         return gconfig[part]
     except KeyError:
         printe(f"lib.py WARNING: Key \"{part}\" does not exist in config/config.json")
         return None
 
+# Get a specific key from the table configuration file
+def gettconfig(part):
+    try:
+        return tconfig[part]
+    except KeyError:
+        printe(f"lib.py WARNING: Key \"{part}\" does not exist in {gconfig['themes']['themecfg_path']}")
+        return None
+
+
 # Timestamp to formatted date
 def dt2fmt(dt):
-    strfstr = getconfig("misc")["strftime"]
+    strfstr = getgconfig("global")["strftime"]
 
     return dt.strftime(strfstr)
 
@@ -57,10 +75,10 @@ def hsize(fsize):
 
     for unit in [" ", "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi"]:
         if abs(fsize) < 1024.0:
-            return f"{fsize:3.0f}{unit}{suffix}"
+            return f"{fsize:3.0f} {unit}{suffix}"
         fsize /= 1024.0
 
-    return f"{num:.1f}Yi{suffix}"
+    return f"{num:.1f} Yi{suffix}"
 
 if exists(gconfig["themes"]["themecfg_path"]):
     with open(gconfig["themes"]["themecfg_path"]) as f:
@@ -88,11 +106,11 @@ def mkcontext(request, title, scripts=""):
 
     context = {
         "title": title,
-        "misc": getconfig("misc"),
-        "navbar": getconfig("navbar"),
+        "misc": getgconfig("misc"),
+        "navbar": getgconfig("navbar"),
         "ver": __version__,
-        "appname": getconfig("global")["appname"],
-        "dev": getconfig("global")["dev"]
+        "appname": getgconfig("global")["appname"],
+        "dev": getgconfig("global")["dev"]
     }
 
     context["styling"] = themecookie
