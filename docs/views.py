@@ -2,7 +2,7 @@
 # File: views.py
 # Purpose: Integrated Documentation Views
 # Created: July 31, 2023
-# Modified: November 15, 2023
+# Modified: November 16, 2023
 
 import csv
 import io
@@ -67,8 +67,10 @@ def getfiledata(path):
 
         if ext in docsconfig["knowntypes"].keys():
             filedata["rtype"] = docsconfig["knowntypes"][ext]["type"]
+            filedata["dtype"] = docsconfig["knowntypes"][ext]["name"]
         else:
             filedata["rtype"] = None
+            filedata["dtype"] = "Unknown"
 
         if filedata["rtype"] in ["markdown", "source", "text"]:
             filedata["dlink"] = path.replace(filepath, urlprefix)
@@ -100,7 +102,7 @@ def listfiles(path):
 
 # "root" page
 def docs(request, path = ""):
-    context = lib.mkcontext(request, "Documentation")
+    context = lib.mkcontext(request, "Documentation", "table")
     context["dir"] = path
     context["headers"] = docsconfig["table"]
 

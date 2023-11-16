@@ -2,7 +2,7 @@
 # File: contactlist/views.py
 # Purpose: Main application views
 # Created: June 9, 2023
-# Modified: November 15, 2023
+# Modified: November 16, 2023
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -190,15 +190,18 @@ def search(request):
 
             allitems = [i.todict() for i in ContactItem.objects.filter(qs)]
 
-            headers = lib.getgconfig("headers")
+            headers = lib.gettconfig("headers")
+            # htmltable in the config should not contain titles, so add them from headers
             columns = []
-            for i in lib.getgconfig("htmltable"):
-                if i["type"] == "info":
-                    i["title"] = headers[i["col"]]
-                elif i["type"] == "button":
-                    i["title"] = ""
+            for tableitem in lib.getgconfig("htmltable"):
+                if tableitem["type"] == "info":
+                    tableitem["title"] = headers[tableitem["col"]]
+                elif tableitem["type"] == "button":
+                    tableitem["title"] = ""
 
-                columns.append(i)
+            columns.append(tableitem)
+
+            allitems = [item.todict() for item in ContactItem.objects.all()]
 
             tmplst = []
             for i in allitems:

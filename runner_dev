@@ -3,7 +3,7 @@
 # File: runner_dev
 # Purpose: Linux/BSD script for running the application in development environments
 # Created: ???, 2023
-# Modified: November 15, 2023
+# Modified: November 16, 2023
 
 find . -name "__pycache__" -exec rm -r "{}" 2> /dev/null \;
 
@@ -40,9 +40,11 @@ then
     fi
     # Run makemigrations after the script checks if all of the supposedly generated files exist
     python3 -B manage.py makemigrations contactlist || showerror "makemigrations"
+    python3 -B manage.py makemigrations || showerror "makemigrations"
     # Check if makemigrations --check --dry-run returns "No changes detected"
     exitcode=$(python3 -B manage.py makemigrations contactlist --check --dry-run)
-    if [ "$exitcode" != "No changes detected" ]
+    exitcode2=$(python3 -B manage.py makemigrations --check --dry-run)
+    if [ "$exitcode" != "No changes detected in app 'contactlist'" ] || or [ "$exitcode2" != "No changes detected" ]
     then
         # Have confirmation to make migrations to prevent possible data loss
         while true; do

@@ -2,12 +2,12 @@
     "misc": {
         "logotext": "ContactList",
         "basescss": "config/themes/base.scss",
-        "facssurl": "/static/fontawesome/css/all.min.css",
-        "fajsurl": "/static/fontawesome/js/all.min.js",
+        "facssurl": "/fontawesome/css/all.min.css",
+        "fajsurl": "/fontawesome/js/all.min.js",
         "bscssurl":  "/bootstrap/css/bootstrap.min.css",
         "bsjsurl": "/bootstrap/js/bootstrap.bundle.min.js",
-        "jqurl": "/static/jquery-3.7.1.min.js",
-        "tsurl": "/static/tablesorter/js/jquery.tablesorter.combined.min.js"
+        "jqurl": "/jquery-3.7.1.min.js",
+        "tsurl": "/tablesorter/js/jquery.tablesorter.combined.min.js"
     },
     "global": {
         "appname": "ContactList",
@@ -16,11 +16,11 @@
     },
     "table": "config/table.json",
     "htmltable": [
-        {"type": "info", "db": "ContactItem", "col": "name", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "info", "db": "ContactItem", "col": "irln", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "info", "db": "ContactItem", "col": "tmod", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "info", "db": "ContactItem", "col": "tcrd", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "buttons", "width": "20", "buttons": [
+        {"type": "info", "db": "ContactItem", "col": "name", "width": "22", "link": "", "icon": "", "text": ""},
+        {"type": "info", "db": "ContactItem", "col": "irln", "width": "22", "link": "", "icon": "", "text": ""},
+        {"type": "info", "db": "ContactItem", "col": "tmod", "width": "22", "link": "", "icon": "", "text": ""},
+        {"type": "info", "db": "ContactItem", "col": "tcrd", "width": "22", "link": "", "icon": "", "text": ""},
+        {"type": "buttons", "width": "12", "buttons": [
             {"link": "/view", "icon": "fa-solid fa-bars", "text": "View"},
             {"link": "/edit", "icon": "fa-solid fa-pen-to-square", "text": "Edit"},
             {"link": "/delete", "icon": "fa-solid fa-xmark", "text": "Delete"}
@@ -47,7 +47,7 @@
             "name": "search",
             "onlyloggedin": "False",
             "text": "Search",
-            "link": "",
+            "link": "/search/",
             "float": "left",
             "type": "link"
         },
