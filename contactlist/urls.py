@@ -1,15 +1,11 @@
 # ContactList - CTCL 2023
-# File: urls.py
+# Date: June 9, 2023 - July 4, 2023
 # Purpose: Main application URLs
-# Created: June 9, 2023
-# Modified: November 15, 2023
 
+from django.urls import path
 from . import views
-from django.urls import include, path
-from markdownx import urls as markdownx
 
 urlpatterns = [
-    path('markdownx/', include(markdownx)),
     path("", views.index),
     path("new/", views.new),
     path("view/<str:inid>/", views.view),

@@ -7,8 +7,8 @@
             <h3>{{ groups|get_item:group }}</h3>
             <table>{% for field in form %}{% if field.name in groupednames|get_item:group %}
                 <tr>
-                    <td width="25%">{{ field.label }}</td>
-                    <td width="75%">{{ field }}</td>
+                    <td>{{ field.label }}</td>
+                    <td>{{ field }}</td>
                 </tr>
             {% endif %}{% endfor %}</table>{% endfor %}
             <input type="submit" value="Submit">

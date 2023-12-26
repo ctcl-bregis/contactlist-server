@@ -16,7 +16,7 @@ ContactList is developed entirely on Debian GNU/Linux and Linux Mint. Functional
 As Django 4.2 is currently the only dependency in "requirements.txt", the minimum Python version required is **3.8** as stated in the [Django documentation](https://docs.djangoproject.com/en/4.2/faq/install/).
 
 ### Software (client)
-Currently, ContactList uses a single first-party cookie for storing the theme preference. JavaScript support is required for the app.
+Due to the lack of login system and user settings at the moment, support for cookies is not required. HTML5 support is recommended. JavaScript may be required for some features.
 
 ## Setup
 *Section To-Do*

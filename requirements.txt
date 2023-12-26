@@ -1,5 +1,3 @@
-csscompressor
 django==4.2
-django-markdownx
-pyscss
 fontawesomefree
+csscompressor

@@ -1,33 +1,3 @@
-## 0.6.0 - [UNRELEASED] - Production Update
-So far this is the largest update yet by code size.
-
-Additions:
-
-- Added Sass for styling due to its use with Bootstrap
-- Added the Integrated Documentation feature of CAMS into ContactList
-- Addition of markdown editor fields, along with the new datatype "mdtext"
-- Addition of CardDAV sync support
-- Multiple database table support though unused by ContactList. This resulted in the rewrite of the build.py management command
-
-Changes:
-
-- Action buttons are now within a single table cell instead of each button having it's own cell, this change is reflected in config.json
-- Automatic setting of the "theme" cookie to the default Flat Dark theme to avoid having "lib.py WARNING: Theme "None" not found, using default" being printed every time a page is loaded when there is no theme cookie set.
-- Indentation fixes in config.json
-- Management command genmodels.py renamed to build.py to better describe its function
-- General code optimizations
-- Total rewrite of themes with the introduction of Bootstrap
-
-## 0.5.2 - July 18, 2023 - Mobile-Friendy Update
-
-Changes:
-
-- Code optimizations
-
-Fixes:
-
-- CSS fixes specific to having the application more usable on phones and other vertical displays
-
 ## 0.5.1 - July 5, 2023 - Chromebook Hotfix
 
 Fixes:
@@ -46,8 +16,8 @@ Additions:
 
 Changes:
 - The navigation bar no longer has a separate configuration file and is now part of config.json
-- choices.py now consists of a single dictionary definition instead of a list of tuples for each dropdown fieldcontactlist/management/commands/build.py
-- Dropdown choices in config.json are now stored in a dictionary instead of a list of lists
+- choices.py now consists of a single dictionary definition instead of a list of tuples for each dropdown field
+- Dropdown choices in config.json are now stored in a dictionary instead of a list of lists 
 
 Fixes:
 
@@ -81,7 +51,7 @@ Fixes:
 
 ## 0.4.0 - June 28, 2023 - Sorting Update
 
-Added:
+Added: 
 
 - Added [tablesorter](https://mottie.github.io/tablesorter/) along with JQuery for the main page table, allowing fields to be sorted
 - Confirmation for deleting items
@@ -89,7 +59,7 @@ Added:
 
 Fixes:
 
-- Added mkcontext to lib.py for pre-filling the dictionary passed as the context for templates. This can make debugging code easier.
+- Added mkcontext to lib.py for pre-filling the dictionary passed as the context for templates. This can make debugging code easier. 
 
 ## 0.3.0 - June 23, 2023 - Font Awesome update
 
