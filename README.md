@@ -1,6 +1,6 @@
 # ContactList "Brown Trout"
 
-ContactList is a simple, configurable web application for managing comtact information. It is written in Python and makes use of the Django web framework. 
+ContactList is a simple, configurable web application for managing contact information. It is written in Python and makes use of the Django web framework. 
 
 ContactList is meant to be an "intermediate" project to CAMS, where a large amount of code from this project would be reused for that project. This is my first web application project that uses a database.
 
