@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head lang="en">
+        <title>{{ title }}</title>
+        <meta charset="UTF-8">
+        <meta name="generator" content="ContactList {{ ver }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link href="{{ misc.bootstrapcss }}" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="{{ misc.bootstrapjs }}"></script>
+        {% if fa %}
+        <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+        {% endif %}
+        {% if jq %}
+        <script type="text/javascript" src="{{ misc.jquery }}"></script>
+        {% endif %}
+        {% if ts %}
+        <link rel="stylesheet" href="{{ styling.tstheme.file }}">
+        <script type="text/javascript" src="{{ misc.tablesorter }}"></script>
+        <script type="text/javascript" src="{{ misc.tablesorterwidget }}"></script>
+        <style>
+{{ styling.tablesorter|safe }}
+        </style>
+        {% endif %}
+        <style>
+{{ styling.main|safe }}
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% for item in navbar %}
+                        {% if item.type == "link" %} {# link is currently the only type implemented #}
+                        <li>
+                            <a class="nav-link" href="{{ item.link }}">{{ item.text }}</a>
+                        </li>
+                        {% endif %}{% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </nav>

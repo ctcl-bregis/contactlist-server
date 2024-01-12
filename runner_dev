@@ -1,0 +1,34 @@
+#!/bin/bash
+# ContactList - CTCL 2023-2024
+# File: runner_dev
+# Purpose: Linux/BSD script for running the application in development environments
+# Created: January 11, 2024
+# Modified: January 12, 2024
+
+find . -name "__pycache__" -exec rm -r "{}" 2> /dev/null \;
+
+export CL_DEBUG="True"
+
+function showerror {
+    echo "runner_dev ERROR: Management command \"$1\" failed!"
+    # Don't continue if something fails so the app does not try to run with missing files
+    exit
+}
+
+if [[ $* == *--build* ]]
+then
+    rm main/models.py 2> /dev/null
+    rm main/fields.py 2> /dev/null
+    rm main/choices.py 2> /dev/null
+    python3 -B manage.py build || showerror "build"
+    python3 -B manage.py makemigrations main
+    python3 -B manage.py migrate main
+fi
+
+if [[ $* == *--build-no-models* ]]
+then
+    python3 -B manage.py build || showerror "build"
+fi
+
+
+python3 -B manage.py runserver 0.0.0.0:8000
