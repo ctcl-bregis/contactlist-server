@@ -21,12 +21,17 @@ then
     rm main/fields.py 2> /dev/null
     rm main/choices.py 2> /dev/null
     python3 -B manage.py build || showerror "build"
+    python3 -B manage.py makemigrations
+    python3 -B manage.py migrate
     python3 -B manage.py makemigrations main
     python3 -B manage.py migrate main
 fi
 
 if [[ $* == *--build-no-models* ]]
 then
+    rm main/models.py 2> /dev/null
+    rm main/fields.py 2> /dev/null
+    rm main/choices.py 2> /dev/null
     python3 -B manage.py build || showerror "build"
 fi
 

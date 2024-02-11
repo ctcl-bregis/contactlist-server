@@ -1,0 +1,10 @@
+{% include "header.html" %}
+    <h1>Continue with deleting contact?</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-danger" type="button">Yes</button>
+            <button type="submit" formaction="/" class="btn btn-primary" type="button">No</button>
+        </div>
+    </form>
+{% include "footer.html" %}

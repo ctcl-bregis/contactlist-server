@@ -2,7 +2,7 @@
 # File: settings.py
 # Purpose: Global app settings
 # Created: January 11, 2024
-# Modified: January 11, 2024
+# Modified: February 10, 2024
 
 from django.core.management.utils import get_random_secret_key
 from pathlib import Path
@@ -42,11 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap5',
     # Non-content app
     'mgmt',
     # Website "apps"
-    'main',
+    'main'
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_FAIL_SILENTLY = not DEBUG
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

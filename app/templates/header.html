@@ -9,12 +9,12 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <link href="{{ misc.bootstrapcss }}" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="{{ misc.bootstrapjs }}"></script>
-        {% if fa %}
-        <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
-        {% endif %}
         {% if jq %}
         <script type="text/javascript" src="{{ misc.jquery }}"></script>
+        {% endif %}
+        {% if fa %}
+        <link href="{% static 'fontawesomefree/css/fontawesome.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/solid.min.css' %}" rel="stylesheet" type="text/css">
         {% endif %}
         {% if ts %}
         <link rel="stylesheet" href="{{ styling.tstheme.file }}">

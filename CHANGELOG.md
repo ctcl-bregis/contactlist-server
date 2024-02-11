@@ -1,13 +1,13 @@
 # 0.6.0 - [UNRELEASED]
-
-Total rewrite of the app
+Almost total rewrite of the app due to a lot of changes required by the addition of Bootstrap for theming.
 
 ## Additions
 - Bootstrap theming
 - Custom tablesorter theme
+- django-cripsy-forms along with its theme crispy-bootstrap5
 
 ## Removed
-- Theme switcher, at least for now
+- Theme switcher, for now
 
 
 # 0.5.1 - July 5, 2023 - Chromebook Hotfix

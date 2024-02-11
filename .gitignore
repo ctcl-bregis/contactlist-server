@@ -169,5 +169,5 @@ contactlist/migrations/0*.py
 choices.py
 fields.py
 models.py
+styling.json
 themecfg.json
-

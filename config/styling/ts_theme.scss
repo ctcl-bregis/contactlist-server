@@ -14,8 +14,8 @@ Converted from Custom LESS Theme by Rob Garrison
 $theme                 : tablesorter-contactlist-dark;
 
 /*** fonts ***/
-$tableHeaderFont       : 11px 'trebuchet ms', verdana, arial;
-$tableBodyFont         : 11px 'trebuchet ms', verdana, arial;
+$tableHeaderFont       : 14pt 'trebuchet ms', verdana, arial;
+$tableBodyFont         : 12pt 'trebuchet ms', verdana, arial;
 
 /*** color definitions ***/
 /* for best results, only change the hue (120),
@@ -90,7 +90,7 @@ $tertiaryEven  : lighten( $secondaryEven, 5% );
 }
 
 /*** Arrows ***/
-$arrowPosition : right 5px center;
+$arrowPosition : right 4pt center;
 
 /* black */
 $unsortedBlack : url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
@@ -157,7 +157,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
 
 	tbody td, tfoot th, tfoot td {
 		padding: $overallPadding;
-		vertical-align: top;
+		vertical-align: middle;
 	}
 
 	/* style header */
@@ -205,7 +205,7 @@ $sortDescWhite : url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEAL
 		td {
 			@include allRows;
 			padding: $overallPadding;
-			vertical-align: top;
+			vertical-align: middle;
 		}
 
 		/* Zebra Widget - row alternating colors */

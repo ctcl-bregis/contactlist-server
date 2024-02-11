@@ -246,7 +246,7 @@
     },
     "headers": {
         "name": "Name",
-        "irln": "Full Real Name",
+        "irln": "Full Name",
         "nick": "Nicknames",
         "prns": "Pronouns",
         "birt": "Birthday",
@@ -278,14 +278,15 @@
         "tmod": "Modified"
     },
     "htmltable": [
-        {"type": "info", "col": "name", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "info", "col": "irln", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "info", "col": "tmod", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "info", "col": "tcrd", "width": "20", "link": "", "icon": "", "text": ""},
-        {"type": "button", "col": "", "width": "5", "link": "/view", "icon": "fa-solid fa-bars", "text": "View"},
-        {"type": "button", "col": "", "width": "5", "link": "/edit", "icon": "fa-solid fa-pen-to-square", "text": "Edit"},
-        {"type": "button", "col": "", "width": "5", "link": "/delete", "icon": "fa-solid fa-xmark", "text": "Delete"},
-        {"type": "button", "col": "", "width": "5", "link": "", "icon": "", "text": ""}
+        {"type": "info", "col": "name", "width": "20"},
+        {"type": "info", "col": "irln", "width": "20"},
+        {"type": "info", "col": "tmod", "width": "20"},
+        {"type": "info", "col": "tcrd", "width": "20"},
+        {"type": "buttons", "col": "", "width": "20", "buttons": [
+            {"link": "/view", "icon": "fa-solid fa-bars", "text": "View", "bsbtnstyle": "btn-primary"},
+            {"link": "/edit", "icon": "fa-solid fa-pen-to-square", "text": "Edit", "bsbtnstyle": "btn-primary"},
+            {"link": "/delete", "icon": "fa-solid fa-xmark", "text": "Delete", "bsbtnstyle": "btn-danger"}
+        ]}
     ],
     "dropdown": {
         "socials": {
