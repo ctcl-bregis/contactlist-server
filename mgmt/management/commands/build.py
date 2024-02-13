@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Django management command for building needed files
 # Created: June 9, 2023
-# Modified: February 11, 2024
+# Modified: February 13, 2024
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -11,7 +11,9 @@
 # - text: Text input that is displayed using a textarea
 
 from django.core.management.base import BaseCommand, CommandError
-import os, json, shutil
+import os
+import shutil
+import json
 from scss import Compiler
 from datetime import datetime, timezone
 from csscompressor import compress
@@ -192,6 +194,17 @@ class Command(BaseCommand):
                 
             shutil.copyfile("db.sqlite3", "db_backup.sqlite3")
         
+        for path in ["node_modules/bootstrap/", "node_modules/jquery", "node_modules/tablesorter"]:
+            if not os.path.exists(path):
+                print(f"genmodels.py ERROR: Required Node module {path} directory missing")
+                return         
+
+        if not os.path.exists("app/static/bootstrap/"):
+            os.mkdir("app/static/bootstrap/")
+            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/bootstrap.min.js")
+            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/bootstrap.min.js")
+            # TODO: rest of this
+
         # Current working directory should be the project root
         try:
             with open("config/config.json") as f:
