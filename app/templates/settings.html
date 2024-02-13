@@ -1,9 +1,9 @@
 {% include "header.html" %}
-{% load crispy_forms_tags %}
         <h1>Settings</h1>
-        <hr>
-        {% crispy form %}
-        <div class="btn-group-rlmenu">
-            <a href="exportcsv/"><button>Export all data as CSV</button></a>
-        </div>
+        <hr>      
+        <a href="exportcsv/">
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="button">Export all data as CSV</button>
+            </div>
+        </a>
 {% include "footer.html" %}
