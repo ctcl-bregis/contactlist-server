@@ -212,9 +212,8 @@ class Command(BaseCommand):
         if not os.path.exists("app/static/bootstrap/"):
             os.mkdir("app/static/bootstrap/")
             os.mkdir("app/static/bootstrap/js/")
-            os.mkdir("app/static/bootstrap/css/")
             shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/js/bootstrap.min.js")
-            #shutil.copyfile("node_modules/bootstrap/dist/css/bootstrap.min.css", "app/static/bootstrap/css/bootstrap.min.css")
+
             # TODO: rest of this
 
         # Current working directory should be the project root
@@ -230,6 +229,8 @@ class Command(BaseCommand):
             return
 
         styles = {}
+
+
         if os.path.exists(jsonconfig["misc"]["tsscss"]):
             with open(jsonconfig["misc"]["tsscss"]) as f:
                 inputscss = f.read()
@@ -254,8 +255,6 @@ class Command(BaseCommand):
 
                 styles["main"] = processedscss
 
-        with open("styling.json", "w") as f:
-            f.write(json.dumps(styles))
         
         with open("main/choices.py", "w") as f:
             f.write(configchoices(jsonconfig))
