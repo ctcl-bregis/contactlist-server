@@ -3,7 +3,7 @@
 # File: runner_dev
 # Purpose: Linux/BSD script for running the application in development environments
 # Created: January 11, 2024
-# Modified: January 12, 2024
+# Modified: February 14, 2024
 
 find . -name "__pycache__" -exec rm -r "{}" 2> /dev/null \;
 
@@ -33,6 +33,18 @@ then
     rm main/fields.py 2> /dev/null
     rm main/choices.py 2> /dev/null
     python3 -B manage.py build || showerror "build"
+fi
+
+if [ ! -f main/models.py ]; then
+    showerror "main/models.py does not exist"
+fi
+
+if [ ! -f main/fields.py ]; then
+    showerror "main/fields.py does not exist"
+fi
+
+if [ ! -f main/choices.py ]; then
+    showerror "main/choices.py does not exist"
 fi
 
 

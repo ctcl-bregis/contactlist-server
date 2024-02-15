@@ -2,7 +2,7 @@
 # File: settings.py
 # Purpose: Global app settings
 # Created: January 11, 2024
-# Modified: February 10, 2024
+# Modified: February 14, 2024
 
 from django.core.management.utils import get_random_secret_key
 from pathlib import Path
@@ -21,6 +21,8 @@ if os.path.exists("key.txt"):
 else:
     print("settings.py WARNING: key.txt does not exist, generating key now")
     SECRET_KEY = get_random_secret_key()
+    with open("key.txt", "w") as f:
+        f.write(SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 try:

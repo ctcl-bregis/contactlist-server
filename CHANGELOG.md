@@ -9,14 +9,13 @@ Almost total rewrite of the app due to a lot of changes required by the addition
 ## Removed
 - Theme switcher, for now
 
-
 # 0.5.1 - July 5, 2023 - Chromebook Hotfix
 
 ## Fixes
 
 - Search feature now searches for content in TextField objects/textarea
 
-Called "Chromebook Hotfix" since it was discovered and fixed from a Chromebook
+Called "Chromebook Hotfix" since it was discovered and fixed from "Chromimum Sulfate"
 
 # 0.5.0 - July 4, 2023 - Browser Update
 

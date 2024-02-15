@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Django management command for building needed files
 # Created: June 9, 2023
-# Modified: February 13, 2024
+# Modified: February 14, 2024
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -201,8 +201,10 @@ class Command(BaseCommand):
 
         if not os.path.exists("app/static/bootstrap/"):
             os.mkdir("app/static/bootstrap/")
-            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/bootstrap.min.js")
-            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/bootstrap.min.js")
+            os.mkdir("app/static/bootstrap/js/")
+            os.mkdir("app/static/bootstrap/css/")
+            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/js/bootstrap.min.js")
+            shutil.copyfile("node_modules/bootstrap/dist/css/bootstrap.min.css", "app/static/bootstrap/css/bootstrap.min.css")
             # TODO: rest of this
 
         # Current working directory should be the project root

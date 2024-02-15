@@ -295,6 +295,7 @@ cython_debug/
 
 # Django DB migration data
 contactlist/migrations/0*.py
+main/migrations/0*.py
 
 # Automatically generated files
 choices.py
