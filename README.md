@@ -9,8 +9,6 @@ ContactList is meant to be an "intermediate" project to CAMS, where a large amou
 ### Software (server)
 ContactList is developed entirely on Debian GNU/Linux and Linux Mint. Functionality on Windows, Mac and BSD platforms is not guaranteed.
 
-As Django 5.0 is currently the only dependency in "requirements.txt", the minimum Python version required is **3.8** as stated in the [Django documentation](https://docs.djangoproject.com/en/4.2/faq/install/).
-
 Dependencies for front-end code such as Bootstrap and jQuery are installed with npm and are automatically copied to "app/static".
 
 Python dependencies are installed with pip.

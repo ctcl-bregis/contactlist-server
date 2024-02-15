@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Django management command for building needed files
 # Created: June 9, 2023
-# Modified: February 14, 2024
+# Modified: February 15, 2024
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -199,12 +199,22 @@ class Command(BaseCommand):
                 print(f"genmodels.py ERROR: Required Node module {path} directory missing")
                 return         
 
+
+        if os.path.exists("app/static/bootstrap/"):
+            try:
+                shutil.rmtree("app/static/bootstrap/")
+                print("\"app/static/bootstrap/\" removed, rebuilding files")
+            except PermissionError:
+                print("Permission denied")
+            except Exception as e:
+                print(f"An error occurred: {str(e)}")
+
         if not os.path.exists("app/static/bootstrap/"):
             os.mkdir("app/static/bootstrap/")
             os.mkdir("app/static/bootstrap/js/")
             os.mkdir("app/static/bootstrap/css/")
             shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/js/bootstrap.min.js")
-            shutil.copyfile("node_modules/bootstrap/dist/css/bootstrap.min.css", "app/static/bootstrap/css/bootstrap.min.css")
+            #shutil.copyfile("node_modules/bootstrap/dist/css/bootstrap.min.css", "app/static/bootstrap/css/bootstrap.min.css")
             # TODO: rest of this
 
         # Current working directory should be the project root
