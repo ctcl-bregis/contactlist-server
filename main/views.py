@@ -2,7 +2,7 @@
 # File: views.py
 # Purpose: Global app settings
 # Created: June 9, 2023
-# Modified: January 12, 2024
+# Modified: February 16, 2024
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -76,6 +76,13 @@ def view(request, inid):
     context = lib.mkcontext(request, "ContactList - View")
     context["headers"] = headers
     context["data"] = data
+    context["groups"] = lib.getconfig("tablecats")
+    context["groupnames"] = lib.getconfig("tablecats").keys()
+    
+    tableconfig = lib.getconfig("table")
+    context["groupednames"] = {}
+    for x in tableconfig.keys():
+        context["groupednames"][x] = [i["col"] for i in tableconfig[x]]
 
     allchoices = Choices.choicedict
 

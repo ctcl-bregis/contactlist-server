@@ -341,10 +341,7 @@
     ],
     "misc": {
         "strftime": "%b %-d, %Y, %H:%M %Z",
-        "mainscss": "config/styling/main.scss",
-        "bootstrapcss": "/static/bootstrap/css/bootstrap.min.css",
         "bootstrapjs": "/static/bootstrap/js/bootstrap.min.js",
-        "tsscss": "config/styling/ts_theme.scss",
         "jquery": "/static/jquery/jquery-3.7.1.min.js",
         "tablesorter": "/static/tablesorter/js/jquery.tablesorter.min.js",
         "tablesorterwidget": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"

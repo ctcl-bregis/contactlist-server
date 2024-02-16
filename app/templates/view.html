@@ -1,0 +1,24 @@
+{% include "header.html" %}
+        <h1>View Contact</h1>
+        <hr>
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                {% for key, value in groups.items %}
+                    <h2 class="center">{{ value }}</h2>
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                        {% for field in groupednames|get_item:key %}
+                            <tr>
+                                <td width="50%">{{ headers|get_item:field }}</td>
+                                <td width="50%">{{ data|get_item:field }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% include "footer.html" %}

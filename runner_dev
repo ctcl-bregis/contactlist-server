@@ -20,6 +20,10 @@ then
     rm main/models.py 2> /dev/null
     rm main/fields.py 2> /dev/null
     rm main/choices.py 2> /dev/null
+    rm -r build/
+    mkdir -p build/
+    sass ./config/styling/main.scss ./app/static/main.css
+    sass ./config/styling/ts_theme.scss ./app/static/ts_theme.css
     python3 -B manage.py build || showerror "build"
     python3 -B manage.py makemigrations
     python3 -B manage.py migrate

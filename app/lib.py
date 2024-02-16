@@ -1,8 +1,8 @@
 # ContactList - CTCL 2023-2024
-# File: asgi.py
+# File: lib.py
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 # Created: May 4, 2023
-# Modified: January 11, 2024
+# Modified: February 16, 2024
 
 from datetime import datetime, timezone
 import json, base64
@@ -23,15 +23,6 @@ try:
         jsondata = json.loads(f.read())["config"]
 except (json.JSONDecodeError, json.decoder.JSONDecodeError) as e:
     printe(f"lib.py ERROR: Exception \"{e}\" raised by JSON library")
-
-# Load theme configuration
-if exists("styling.json"):
-    with open("styling.json") as f:
-        styles = json.loads(f.read())
-else:
-    printe("lib.py ERROR: styling.json does not exist, it may not have been generated yet")
-    styles = {}
-
 
 # Get a specific part/key of the config
 def getconfig(part):
@@ -66,11 +57,10 @@ def theme(tname):
     except KeyError:
         printe(f"lib.py WARNING: Theme \"{tname}\" not found, using default")
         return themes["default"]
-        
 
 # Function to prefill context data to make views smaller
 def mkcontext(request, title, scripts="none"):
-    context = {"title": title, "styling": styles, "misc": getconfig("misc"), "navbar": getconfig("navbar"), "ver": __version__}
+    context = {"title": title, "misc": getconfig("misc"), "navbar": getconfig("navbar"), "ver": __version__}
     
     # font - Load just fontawesome
     # form - Load JQuery and Select2

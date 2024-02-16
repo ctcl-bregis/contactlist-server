@@ -8,8 +8,8 @@
     </script>
     <table id="maintable" class="tablesorter">
         <thead>
-            <tr>{% for header in headers %}{% if header.type == "button" %}
-                <th style="width: {{ header.width }}%;" data-sorter="false">{{ header.title }}</th>{% else %}
+            <tr>{% for header in headers %}{% if header.type == "buttons" %}
+                <th style="width: {{ header.width }}%;" class="sorter-false">{{ header.title }}</th>{% else %}
                 <th style="width: {{ header.width }}%;">{{ header.title }}</th>{% endif %}{% endfor %}
             </tr>
         </thead>

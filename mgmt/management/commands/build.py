@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Django management command for building needed files
 # Created: June 9, 2023
-# Modified: February 15, 2024
+# Modified: February 16, 2024
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -14,7 +14,7 @@ from django.core.management.base import BaseCommand, CommandError
 import os
 import shutil
 import json
-from scss import Compiler
+import sys
 from datetime import datetime, timezone
 from csscompressor import compress
 
@@ -183,6 +183,7 @@ class SearchForm(forms.Form):
 
     return fieldspy
 
+
 class Command(BaseCommand):
     help = "Generates a model.py for the application using config files under config/database/"
     
@@ -223,39 +224,13 @@ class Command(BaseCommand):
         except FileNotFoundError:
             cwd = os.getcwd()
             print(f"genmodels.py ERROR: config/config.json does not exist. Current working directory is \"{cwd}\".")
+            sys.exit(1)
             return
         except (json.JSONDecodeError, json.decoder.JSONDecodeError) as e:
             print(f"genmodels.py ERROR: Exception \"{e}\" raised by JSON library")
+            sys.exit(1)
             return
 
-        styles = {}
-
-
-        if os.path.exists(jsonconfig["misc"]["tsscss"]):
-            with open(jsonconfig["misc"]["tsscss"]) as f:
-                inputscss = f.read()
-                try:
-                    processedscss = Compiler().compile_string(inputscss)
-                    processedscss = compress(processedscss)
-                except Exception as err:
-                    print(f"build.py ERROR: SCSS compilation exception when processing {jsonconfig['misc']['tsscss']}: {err}")
-                    return
-
-                styles["tablesorter"] = processedscss
-        
-        if os.path.exists(jsonconfig["misc"]["mainscss"]):
-            with open(jsonconfig["misc"]["mainscss"]) as f:
-                inputscss = f.read()
-                try:
-                    processedscss = Compiler().compile_string(inputscss)
-                    processedscss = compress(processedscss)
-                except Exception as err:
-                    print(f"build.py ERROR: SCSS compilation exception when processing {jsonconfig['misc']['mainscss']}: {err}")
-                    return
-
-                styles["main"] = processedscss
-
-        
         with open("main/choices.py", "w") as f:
             f.write(configchoices(jsonconfig))
         

@@ -7,7 +7,6 @@
         <meta name="generator" content="ContactList {{ ver }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <link href="{{ misc.bootstrapcss }}" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="{{ misc.bootstrapjs }}"></script>
         {% if jq %}
         <script type="text/javascript" src="{{ misc.jquery }}"></script>
@@ -20,13 +19,9 @@
         <link rel="stylesheet" href="{{ styling.tstheme.file }}">
         <script type="text/javascript" src="{{ misc.tablesorter }}"></script>
         <script type="text/javascript" src="{{ misc.tablesorterwidget }}"></script>
-        <style>
-{{ styling.tablesorter|safe }}
-        </style>
+        <link rel="stylesheet" href="{% static 'ts_theme.css' %}">
         {% endif %}
-        <style>
-{{ styling.main|safe }}
-        </style>
+        <link rel="stylesheet" href="{% static 'main.css' %}">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
