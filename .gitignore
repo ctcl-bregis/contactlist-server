@@ -305,6 +305,6 @@ styling.json
 themecfg.json
 app/static/bootstrap
 app/static/jquery*.js
-app/static/
-*.css
-*.css.map
+# Do not exclude all CSS files because of Font Awesome
+app/static/*.css
+app/static/*.css.map

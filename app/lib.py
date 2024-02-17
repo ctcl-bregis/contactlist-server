@@ -2,7 +2,7 @@
 # File: lib.py
 # Purpose: Commonly used functions, similar to lib.rs in Rust
 # Created: May 4, 2023
-# Modified: February 16, 2024
+# Modified: February 17, 2024
 
 from datetime import datetime, timezone
 import json, base64
@@ -70,7 +70,7 @@ def mkcontext(request, title, scripts="none"):
     # fa - Load Font Awesome
     # jq - Load jQuery
     # ts - Load tablesorter
-    # s2 - Load Select2 and markdownx
+    # s2 - Currently does not do anything
 
     if scripts == "font":
         context["fa"] = True

@@ -2,5 +2,4 @@ csscompressor
 django
 crispy-bootstrap5
 django-crispy-forms
-django-markdownx
 fontawesomefree

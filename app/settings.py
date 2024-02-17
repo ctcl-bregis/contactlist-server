@@ -2,7 +2,7 @@
 # File: settings.py
 # Purpose: Global app settings
 # Created: January 11, 2024
-# Modified: February 16, 2024
+# Modified: February 17, 2024
 
 from django.core.management.utils import get_random_secret_key
 from pathlib import Path
@@ -36,6 +36,8 @@ except KeyError:
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
 
+X_FRAME_OPTIONS = 'SAMEORIGIN' 
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
-    'markdownx',
     # Non-content app
     'mgmt',
     # Website "apps"

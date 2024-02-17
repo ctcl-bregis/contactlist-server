@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Django management command for building needed files
 # Created: June 9, 2023
-# Modified: February 16, 2024
+# Modified: February 17, 2024
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -58,9 +58,6 @@ def configmodels(jsonconfig):
             elif dt == "text":
                 table += f"    {col['col']} = models.TextField(blank = True, null = True)\n"
                 table += f"    {col['col']}.group = \"{category}\"\n"
-            elif dt == "mdtext":
-                table += f"    {col['col']} = MarkdownxField(blank = True, null = True)\n"
-                table += f"    {col['col']}.group = \"{category}\"\n"
             elif dt == "date":
                 table += f"    {col['col']} = models.DateField(null = True)\n"
                 table += f"    {col['col']}.group = \"{category}\"\n"
@@ -95,7 +92,6 @@ def configmodels(jsonconfig):
 
 from django.utils import timezone
 from django.db import models
-from markdownx.models import MarkdownxField
 from .choices import Choices
 
 class ContactItem(models.Model):
@@ -162,7 +158,6 @@ def configfields(jsonconfig):
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
-from markdownx.fields import MarkdownxFormField
 from .choices import Choices
 from .models import ContactItem
 
@@ -218,6 +213,7 @@ class Command(BaseCommand):
             os.mkdir("app/static/bootstrap/")
             os.mkdir("app/static/bootstrap/js/")
             shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/js/bootstrap.min.js")
+            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js.map", "app/static/bootstrap/js/bootstrap.min.js.map")
 
         shutil.copyfile("node_modules/jquery/dist/jquery.min.js", "app/static/jquery.min.js")
         shutil.copyfile("node_modules/tablesorter/dist/js/jquery.tablesorter.min.js", "app/static/jquery.tablesorter.min.js")
