@@ -304,5 +304,7 @@ models.py
 styling.json
 themecfg.json
 app/static/bootstrap
-app/static/jquery
-app/static/tablesorter
+app/static/jquery*.js
+app/static/
+*.css
+*.css.map

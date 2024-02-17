@@ -49,7 +49,7 @@
         },
         {
             "col": "loca",
-            "datatype": "text",
+            "datatype": "mdtext",
             "min": "",
             "max": "",
             "step": "",
@@ -57,7 +57,7 @@
         },
         {
             "col": "appe",
-            "datatype": "text",
+            "datatype": "mdtext",
             "min": "",
             "max": "",
             "step": "",
@@ -228,7 +228,7 @@
         "other": [
         {
             "col": "empl",
-            "datatype": "text",
+            "datatype": "mdtext",
             "min": "",
             "max": "",
             "step": "",
@@ -236,7 +236,7 @@
         },
         {
             "col": "note",
-            "datatype": "text",
+            "datatype": "mdtext",
             "min": "",
             "max": "",
             "step": "",
@@ -340,10 +340,6 @@
         }
     ],
     "misc": {
-        "strftime": "%b %-d, %Y, %H:%M %Z",
-        "bootstrapjs": "/static/bootstrap/js/bootstrap.min.js",
-        "jquery": "/static/jquery/jquery-3.7.1.min.js",
-        "tablesorter": "/static/tablesorter/js/jquery.tablesorter.min.js",
-        "tablesorterwidget": "/static/tablesorter/js/jquery.tablesorter.widgets.min.js"
+        "strftime": "%b %-d, %Y, %H:%M %Z"
     }
 }}

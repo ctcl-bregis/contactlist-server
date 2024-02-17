@@ -3,7 +3,7 @@
 # File: runner_dev
 # Purpose: Linux/BSD script for running the application in development environments
 # Created: January 11, 2024
-# Modified: February 14, 2024
+# Modified: February 16, 2024
 
 find . -name "__pycache__" -exec rm -r "{}" 2> /dev/null \;
 

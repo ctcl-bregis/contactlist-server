@@ -1,4 +1,4 @@
-# 0.6.0 - [UNRELEASED]
+# 0.6.0 - February 16, 2024 - Bootstrap Update
 Almost total rewrite of the app due to a lot of changes required by the addition of Bootstrap for theming.
 
 ## Additions
@@ -8,6 +8,7 @@ Almost total rewrite of the app due to a lot of changes required by the addition
 
 ## Removed
 - Theme switcher, for now
+- PyScss for SCSS compilation, the Node module is now used
 
 # 0.5.1 - July 5, 2023 - Chromebook Hotfix
 

@@ -11,4 +11,5 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path("", include("main.urls")),
     #path("docs/", include("docs.urls")),
+    path('markdownx/', include('markdownx.urls')),
 ]

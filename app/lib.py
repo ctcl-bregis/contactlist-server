@@ -62,29 +62,25 @@ def theme(tname):
 def mkcontext(request, title, scripts="none"):
     context = {"title": title, "misc": getconfig("misc"), "navbar": getconfig("navbar"), "ver": __version__}
     
-    # font - Load just fontawesome
-    # form - Load JQuery and Select2
-    # table - Load JQuery, fontawesome and tablesorter
+    context["fa"] = False
+    context["jq"] = False
+    context["ts"] = False
+    context["s2"] = False
+    
+    # fa - Load Font Awesome
+    # jq - Load jQuery
+    # ts - Load tablesorter
+    # s2 - Load Select2 and markdownx
+
     if scripts == "font":
         context["fa"] = True
-        context["jq"] = False
-        context["ts"] = False
-        context["s2"] = False
     elif scripts == "form":
-        context["fa"] = False
         context["jq"] = True
-        context["ts"] = False
         context["s2"] = True
     elif scripts == "table":
         context["fa"] = True
         context["jq"] = True
         context["ts"] = True
-        context["s2"] = False
-    else:
-        context["fa"] = False
-        context["jq"] = False
-        context["ts"] = False
-        context["s2"] = False
     
     return context
 

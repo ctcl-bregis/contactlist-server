@@ -58,6 +58,9 @@ def configmodels(jsonconfig):
             elif dt == "text":
                 table += f"    {col['col']} = models.TextField(blank = True, null = True)\n"
                 table += f"    {col['col']}.group = \"{category}\"\n"
+            elif dt == "mdtext":
+                table += f"    {col['col']} = MarkdownxField(blank = True, null = True)\n"
+                table += f"    {col['col']}.group = \"{category}\"\n"
             elif dt == "date":
                 table += f"    {col['col']} = models.DateField(null = True)\n"
                 table += f"    {col['col']}.group = \"{category}\"\n"
@@ -92,6 +95,7 @@ def configmodels(jsonconfig):
 
 from django.utils import timezone
 from django.db import models
+from markdownx.models import MarkdownxField
 from .choices import Choices
 
 class ContactItem(models.Model):
@@ -158,6 +162,7 @@ def configfields(jsonconfig):
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, Submit
+from markdownx.fields import MarkdownxFormField
 from .choices import Choices
 from .models import ContactItem
 
@@ -200,7 +205,6 @@ class Command(BaseCommand):
                 print(f"genmodels.py ERROR: Required Node module {path} directory missing")
                 return         
 
-
         if os.path.exists("app/static/bootstrap/"):
             try:
                 shutil.rmtree("app/static/bootstrap/")
@@ -215,7 +219,9 @@ class Command(BaseCommand):
             os.mkdir("app/static/bootstrap/js/")
             shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/js/bootstrap.min.js")
 
-            # TODO: rest of this
+        shutil.copyfile("node_modules/jquery/dist/jquery.min.js", "app/static/jquery.min.js")
+        shutil.copyfile("node_modules/tablesorter/dist/js/jquery.tablesorter.min.js", "app/static/jquery.tablesorter.min.js")
+        shutil.copyfile("node_modules/tablesorter/dist/js/jquery.tablesorter.widgets.min.js", "app/static/jquery.tablesorter.widgets.min.js")
 
         # Current working directory should be the project root
         try:

@@ -7,9 +7,9 @@
         <meta name="generator" content="ContactList {{ ver }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" src="{{ misc.bootstrapjs }}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         {% if jq %}
-        <script type="text/javascript" src="{{ misc.jquery }}"></script>
+        <script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
         {% endif %}
         {% if fa %}
         <link href="{% static 'fontawesomefree/css/fontawesome.min.css' %}" rel="stylesheet" type="text/css">
@@ -17,9 +17,12 @@
         {% endif %}
         {% if ts %}
         <link rel="stylesheet" href="{{ styling.tstheme.file }}">
-        <script type="text/javascript" src="{{ misc.tablesorter }}"></script>
-        <script type="text/javascript" src="{{ misc.tablesorterwidget }}"></script>
+        <script type="text/javascript" src="{% static 'jquery.tablesorter.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'jquery.tablesorter.widgets.min.js' %}"></script>
         <link rel="stylesheet" href="{% static 'ts_theme.css' %}">
+        {% endif %}
+        {% if s2 %}
+        <script type"text/javascript" src="{% static 'markdownx/js/markdownx.min.js' %}"></script>
         {% endif %}
         <link rel="stylesheet" href="{% static 'main.css' %}">
     </head>
