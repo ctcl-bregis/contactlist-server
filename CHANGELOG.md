@@ -1,4 +1,4 @@
-# 0.6.0 - February 16, 2024 - Bootstrap Update
+# 0.6.0-pr1 - February 19, 2024 - Bootstrap Update
 Almost total rewrite of the app due to a lot of changes required by the addition of Bootstrap for theming.
 
 ## Additions

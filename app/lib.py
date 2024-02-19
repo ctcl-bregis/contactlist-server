@@ -70,11 +70,12 @@ def mkcontext(request, title, scripts="none"):
     # fa - Load Font Awesome
     # jq - Load jQuery
     # ts - Load tablesorter
-    # s2 - Currently does not do anything
+    # s2 - Load markdown editor
 
     if scripts == "font":
         context["fa"] = True
     elif scripts == "form":
+        context["fa"] = True
         context["jq"] = True
         context["s2"] = True
     elif scripts == "table":

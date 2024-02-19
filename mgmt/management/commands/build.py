@@ -93,6 +93,7 @@ def configmodels(jsonconfig):
 from django.utils import timezone
 from django.db import models
 from .choices import Choices
+from django import forms
 
 class ContactItem(models.Model):
     # inid, tcrd, tmod are not defined by the configuration file
@@ -200,20 +201,16 @@ class Command(BaseCommand):
                 print(f"genmodels.py ERROR: Required Node module {path} directory missing")
                 return         
 
-        if os.path.exists("app/static/bootstrap/"):
-            try:
-                shutil.rmtree("app/static/bootstrap/")
-                print("\"app/static/bootstrap/\" removed, rebuilding files")
-            except PermissionError:
-                print("Permission denied")
-            except Exception as e:
-                print(f"An error occurred: {str(e)}")
-
         if not os.path.exists("app/static/bootstrap/"):
             os.mkdir("app/static/bootstrap/")
             os.mkdir("app/static/bootstrap/js/")
-            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js", "app/static/bootstrap/js/bootstrap.min.js")
-            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.min.js.map", "app/static/bootstrap/js/bootstrap.min.js.map")
+            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.bundle.min.js", "app/static/bootstrap/js/bootstrap.bundle.min.js")
+            shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map", "app/static/bootstrap/js/bootstrap.bundle.min.js.map")
+
+        if not os.path.exists("app/static/ckeditor5"):
+            os.mkdir("app/static/ckeditor5")
+            os.mkdir("app/static/ckeditor5/build")
+            shutil.copyfile("node_modules/ckeditor5/build/ckeditor5-dll.js", "app/static/ckeditor5/build/ckeditor5-dll.js")
 
         shutil.copyfile("node_modules/jquery/dist/jquery.min.js", "app/static/jquery.min.js")
         shutil.copyfile("node_modules/tablesorter/dist/js/jquery.tablesorter.min.js", "app/static/jquery.tablesorter.min.js")

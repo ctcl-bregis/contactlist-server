@@ -9,7 +9,27 @@ ContactList is meant to be an "intermediate" project to CAMS, where a large amou
 ### Software (server)
 ContactList is developed entirely on Debian GNU/Linux and Linux Mint. Functionality on Windows, Mac and BSD platforms is not guaranteed.
 
+Command line tools npm and node are required to install the dependencies.
+
+#### Node Modules
+Some modules are required to be installed globally and are not listed in package.json
+
+These modules are as follows:
+
+- bower
+- corepack
+- sass
+
 Dependencies for front-end code such as Bootstrap and jQuery are installed with npm and are automatically copied to "app/static".
+
+#### Bower Modules
+These modules are required:
+
+- krajee-markdown-editor
+- ace-builds
+
+
+#### Python Modules
 
 Python dependencies are installed with pip.
 

@@ -304,6 +304,7 @@ models.py
 styling.json
 themecfg.json
 app/static/bootstrap
+app/static/ckeditor5
 app/static/jquery*.js
 # Do not exclude all CSS files because of Font Awesome
 app/static/*.css
