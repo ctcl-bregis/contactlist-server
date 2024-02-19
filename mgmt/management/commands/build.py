@@ -2,7 +2,7 @@
 # File: build.py
 # Purpose: Django management command for building needed files
 # Created: June 9, 2023
-# Modified: February 17, 2024
+# Modified: February 19, 2024
 
 # Valid data types
 # - date: datetime.date object, editable via Django DateField form class
@@ -207,10 +207,10 @@ class Command(BaseCommand):
             shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.bundle.min.js", "app/static/bootstrap/js/bootstrap.bundle.min.js")
             shutil.copyfile("node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map", "app/static/bootstrap/js/bootstrap.bundle.min.js.map")
 
-        if not os.path.exists("app/static/ckeditor5"):
-            os.mkdir("app/static/ckeditor5")
-            os.mkdir("app/static/ckeditor5/build")
-            shutil.copyfile("node_modules/ckeditor5/build/ckeditor5-dll.js", "app/static/ckeditor5/build/ckeditor5-dll.js")
+        #if not os.path.exists("app/static/ckeditor5"):
+        #    os.mkdir("app/static/ckeditor5")
+        #    os.mkdir("app/static/ckeditor5/build")
+        #    shutil.copyfile("node_modules/ckeditor5/build/ckeditor5-dll.js", "app/static/ckeditor5/build/ckeditor5-dll.js")
 
         shutil.copyfile("node_modules/jquery/dist/jquery.min.js", "app/static/jquery.min.js")
         shutil.copyfile("node_modules/tablesorter/dist/js/jquery.tablesorter.min.js", "app/static/jquery.tablesorter.min.js")

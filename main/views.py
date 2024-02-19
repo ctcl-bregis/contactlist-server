@@ -2,7 +2,7 @@
 # File: views.py
 # Purpose: Global app settings
 # Created: June 9, 2023
-# Modified: February 16, 2024
+# Modified: February 19, 2024
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -13,6 +13,7 @@ from datetime import datetime
 from app import lib
 from app.lib import printe
 import csv, io
+import pytz
 
 try:
     from .models import ContactItem
@@ -33,6 +34,10 @@ except ModuleNotFoundError:
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
+@register.filter(name='zip')
+def zip_lists(a, b):
+  return zip(a, b)
     
 # "Main" page that currently lists everything
 def index(request):
@@ -42,7 +47,7 @@ def index(request):
     # htmltable in the config should not contain titles, so add them from headers
     columns = []
     for i in lib.getconfig("htmltable"):
-        if i["type"] == "info":
+        if i["type"] == "info" or i["type"] == "infotime":
             i["title"] = headers[i["col"]]
         elif i["type"] == "button":
             i["title"] = ""
@@ -68,12 +73,14 @@ def view(request, inid):
     dbitem = ContactItem.objects.get(pk=inid)
     data = dbitem.todict()
     cfgdata = ContactItem.cfgdata()
-    
+    context = lib.mkcontext(request, "ContactList - View")
+
+    context["id"] = data["inid"]
+
     # Remove database ID
     data.pop("inid")
     headers = lib.getconfig("headers")
 
-    context = lib.mkcontext(request, "ContactList - View")
     context["headers"] = headers
     context["data"] = data
     context["groups"] = lib.getconfig("tablecats")
@@ -107,7 +114,7 @@ def new(request):
             for k, v in cld.items():
                 setattr(newentry, k, v)
             
-            dt = datetime.now()
+            dt = datetime.utcnow().replace(tzinfo=pytz.utc)
             setattr(newentry, "tcrd", dt)
             setattr(newentry, "tmod", dt)
             newentry.save()
@@ -138,7 +145,7 @@ def edit(request, inid):
         if form.is_valid():
             form.save()
             data = ContactItem.objects.get(pk=inid)
-            data.tmod = datetime.now()
+            data.tmod = datetime.utcnow().replace(tzinfo=pytz.utc)
             data.save()
             return HttpResponseRedirect("/")
         else:

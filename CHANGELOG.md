@@ -1,14 +1,19 @@
-# 0.6.0-pr1 - February 19, 2024 - Bootstrap Update
+# 0.6.0 - [UNRELEASED] - Bootstrap Update
 Almost total rewrite of the app due to a lot of changes required by the addition of Bootstrap for theming.
 
 ## Additions
 - Bootstrap theming
 - Custom tablesorter theme
 - django-cripsy-forms along with its theme crispy-bootstrap5
+- Edit button on view pages
+- More social media platforms added to the base configuration
 
 ## Removed
 - Theme switcher, for now
 - PyScss for SCSS compilation, the Node module is now used
+
+## Fixes
+- Date ordering on tables
 
 # 0.5.1 - July 5, 2023 - Chromebook Hotfix
 

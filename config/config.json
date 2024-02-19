@@ -186,6 +186,38 @@
             "ddfile": ""
         },
         {
+            "col": "smp7",
+            "datatype": "select",
+            "min": "",
+            "max": "",
+            "step": "",
+            "ddfile": "socials"
+        },
+        {
+            "col": "smu7",
+            "datatype": "string",
+            "min": "",
+            "max": "64",
+            "step": "",
+            "ddfile": ""
+        },
+        {
+            "col": "smp8",
+            "datatype": "select",
+            "min": "",
+            "max": "",
+            "step": "",
+            "ddfile": "socials"
+        },
+        {
+            "col": "smu8",
+            "datatype": "string",
+            "min": "",
+            "max": "64",
+            "step": "",
+            "ddfile": ""
+        },
+        {
             "col": "ema1",
             "datatype": "string",
             "min": "",
@@ -267,12 +299,18 @@
         "smu5": "Social Media Username 5",
         "smp6": "Social Media Platform 6",
         "smu6": "Social Media Username 6",
+        "smp7": "Social Media Platform 7",
+        "smu7": "Social Media Username 7",
+        "smp8": "Social Media Platform 8",
+        "smu8": "Social Media Username 8",
+        "smp9": "Social Media Platform 9",
+        "smu9": "Social Media Username 9",
         "ema1": "Email 1",
         "ema2": "Email 2",
         "ema3": "Email 3",
         "ema4": "Email 4",
         "nphn": "Phone Number",
-        "empl": "Employment Information",
+        "empl": "Employment & Education Information",
         "note": "Notes",
         "tcrd": "Created",
         "tmod": "Modified"
@@ -280,8 +318,8 @@
     "htmltable": [
         {"type": "info", "col": "name", "width": "20"},
         {"type": "info", "col": "irln", "width": "20"},
-        {"type": "info", "col": "tmod", "width": "20"},
-        {"type": "info", "col": "tcrd", "width": "20"},
+        {"type": "infotime", "col": "tmod", "width": "20"},
+        {"type": "infotime", "col": "tcrd", "width": "20"},
         {"type": "buttons", "col": "", "width": "20", "buttons": [
             {"link": "/view", "icon": "fa-solid fa-bars", "text": "View", "bsbtnstyle": "btn-primary"},
             {"link": "/edit", "icon": "fa-solid fa-pen-to-square", "text": "Edit", "bsbtnstyle": "btn-primary"},
@@ -290,6 +328,7 @@
     ],
     "dropdown": {
         "socials": {
+            "capp": "Cash App",
             "disc": "Discord",
             "ebay": "eBay",
             "epic": "Epic Games",
@@ -299,10 +338,16 @@
             "payp": "PayPal",
             "inst": "Instagram",
             "redd": "Reddit",
+            "skyp": "Skype",
             "snap": "Snapchat",
+            "spot": "Spotify",
             "stea": "Steam",
-            "twit": "Twitter",
-            "webs": "Personal Website"
+            "tikt": "TikTok",
+            "twit": "Twitch",
+            "twix": "Twitter",
+            "webs": "Personal Website",
+            "ytbe": "YouTube",
+            "xbox": "Xbox"
         }
     },
     "navbar": [
