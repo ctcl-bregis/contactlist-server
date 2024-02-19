@@ -2,7 +2,7 @@
 # File: urls.py
 # Purpose: App URLs
 # Created: January 11, 2024
-# Modified: February 17, 2024
+# Modified: February 19, 2024
 
 from django.contrib import admin
 from django.urls import include, path
@@ -11,5 +11,4 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path("", include("main.urls")),
     #path("docs/", include("docs.urls")),
-    path('martor/', include('martor.urls')),
 ]
