@@ -1,5 +1,6 @@
 {
-    "search.exclude": {
-        "**/node_modules": false
-    }
+    "psi-header.variables": [
+        ["projectname", "ContactList"],
+        ["projectCreationYear", "2023"]
+    ]
 }

@@ -1,2 +1,0 @@
-- Finish implementing npm for getting dependencies
-- Replace print statements with logging library

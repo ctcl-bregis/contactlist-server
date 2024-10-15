@@ -1,6 +1,1 @@
-crispy-bootstrap5
-csscompressor
-django
-django-crispy-forms
-fontawesomefree
-pytz
+flask
