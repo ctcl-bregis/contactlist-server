@@ -309,3 +309,7 @@ app/static/jquery*.js
 # Do not exclude all CSS files because of Font Awesome
 app/static/*.css
 app/static/*.css.map
+
+# Added by cargo
+
+/target
