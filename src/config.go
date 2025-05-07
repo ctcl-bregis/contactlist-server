@@ -2,7 +2,7 @@
 // File:config.go
 // Purpose: Config definition and parsing
 // Created: March 23, 2025
-// Modified: March 23, 2025
+// Modified: May 6, 2025
 
 package main
 
@@ -19,10 +19,10 @@ type Config struct {
 }
 
 
-func loadconfig(path string) Config {
+func loadconfig(path string) (Config, error) {
 	jsondata, err := os.Open(path)
 	if err != nil {
-		panic(err)
+		return Config{}, err
 	}
 	defer jsondata.Close()
 
@@ -32,5 +32,5 @@ func loadconfig(path string) Config {
 
 	_ = json.Unmarshal(byteValue, &config)
 
-	return config
+	return config, nil
 }

@@ -6,4 +6,4 @@ clean:
 	if [ -d ".git" ] || [ -d "bin" ]; then rm -r bin; fi
 
 run:
-	go run main.go
+	bin/contactlist

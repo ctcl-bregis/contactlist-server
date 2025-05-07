@@ -2,33 +2,32 @@
 // File: src/main.go
 // Purpose: Server definition
 // Created: March 23, 2025
-// Modified: March 23, 2025
+// Modified: May 6, 2025
 
 package main
 
 import (
-	//"html/template"
-	"net/http"
-	//"path/filepath"
-
 	"log"
-
-	"github.com/go-chi/chi/v5"
-	//"github.com/go-chi/chi/v5/middleware"
+	"github.com/gin-gonic/gin"
+	"strconv"
 )
 
-var config = loadconfig("config/config.json")
-var logger = log.Default()
+var config Config;
+var logger *log.Logger = log.Default();
 
 func main() {
-	r := chi.NewRouter()
-
-	bind := config.Bind+":"+string(rune(config.Port))
-
-	err := http.ListenAndServe(bind, r)
+	config, err := loadconfig("config/config.json");
 	if err != nil {
-		panic(err)
-	} else {
-		logger.Println("Server started bound to " + bind)
+		logger.Fatal(err);
 	}
+
+	router := gin.Default();
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Hello, World!",
+		});
+	})
+	router.Run(":" + strconv.Itoa(config.Port))
+
+
 }
